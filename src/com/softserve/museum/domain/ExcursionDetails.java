@@ -11,6 +11,7 @@ package com.softserve.museum.domain;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,6 +37,8 @@ public class ExcursionDetails {
     
     @Column(name = "name")
     private String name;
-        
+    
+    @Column
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalTime duration;
 }

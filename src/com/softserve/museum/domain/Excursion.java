@@ -10,10 +10,13 @@ package com.softserve.museum.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,14 +37,20 @@ public class Excursion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private int id;
     
-    
+    @Column
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime start;
     
+    @Column
+    @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime end;
     
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "details_id")
     private ExcursionDetails details;
     
-    @ManyToOne    
+    @ManyToOne  
+    @JoinColumn(name = "guide_id")
     private Guide guide;
 
 }

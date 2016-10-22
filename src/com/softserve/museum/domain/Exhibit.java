@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -40,11 +41,14 @@ public class Exhibit {
     private String name;
     
     @ManyToOne
+    @JoinColumn(referencedColumnName = "author_id")
     private Author author;
     
     @ManyToOne
+    @JoinColumn(referencedColumnName = "material_id")
     private Material material;
     
     @ManyToOne
+    @JoinColumn(referencedColumnName = "technique_id")
     private Technique technique;
 }
