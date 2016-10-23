@@ -39,7 +39,7 @@ public class ExcursionDetails {
     private String name;
     
     @Column
-    @Convert(converter = LocalDateTimeConverter.class)
+    @Convert(converter = LocalTimeConverter.class)
     private LocalTime duration;
     
     /**

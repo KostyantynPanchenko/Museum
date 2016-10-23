@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.softserve.museum.dao.generic.ExcursionDetailsDAO;
 import com.softserve.museum.domain.ExcursionDetails;
 
 /**
@@ -25,7 +26,8 @@ import com.softserve.museum.domain.ExcursionDetails;
  */
 @Repository
 @Transactional
-public class ExcursionDetailsDAOimpl extends AbstractDAO<ExcursionDetails, Integer> {
+public class ExcursionDetailsDAOimpl extends
+        AbstractDAO<ExcursionDetails, Integer> implements ExcursionDetailsDAO {
 
     protected ExcursionDetailsDAOimpl() {
         super(ExcursionDetails.class);

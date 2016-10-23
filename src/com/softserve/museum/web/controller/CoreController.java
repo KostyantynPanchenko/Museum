@@ -16,8 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.softserve.museum.domain.Exhibit;
+import com.softserve.museum.dao.generic.ExcursionDAO;
 import com.softserve.museum.dao.generic.ExhibitDAO;
+import com.softserve.museum.domain.Excursion;
+import com.softserve.museum.domain.Exhibit;
 
 /**
  * 
@@ -34,17 +36,30 @@ public class CoreController {
     @Autowired
     private ExhibitDAO dao;
     
+    @Autowired
+    private ExcursionDAO excursions;
+    
     @GetMapping("/")
     public ModelAndView onIndex() {
-        testHibernate();
+        testExhibits();
+        testExcursions();
         ModelAndView model = new ModelAndView("index");
         return model;
     }
     
-    private void testHibernate() {
-        System.out.println(" ++++++++++++++++  HIBERNATE  ++++++++++++++++");
+    private void testExhibits() {
+        System.out.println(" ++++++++++++++++  EXHIBITS   ++++++++++++++++");
         List<Exhibit> exhibits = dao.getAll();
         for (Exhibit ex: exhibits) {
+            System.out.println(ex);
+        }
+        System.out.println(" ++++++++++++++++ END OF TEST ++++++++++++++++");
+    }
+    
+    private void testExcursions() {
+        System.out.println(" ++++++++++++++++  HIBERNATE  ++++++++++++++++");
+        List<Excursion> exs = excursions.getAll();
+        for (Excursion ex: exs) {
             System.out.println(ex);
         }
         System.out.println(" ++++++++++++++++ END OF TEST ++++++++++++++++");

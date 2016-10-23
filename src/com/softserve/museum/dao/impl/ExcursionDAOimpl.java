@@ -8,6 +8,11 @@
  */
 package com.softserve.museum.dao.impl;
 
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
+
+import com.softserve.museum.dao.generic.ExcursionDAO;
 import com.softserve.museum.domain.Excursion;
 
 /**
@@ -19,7 +24,10 @@ import com.softserve.museum.domain.Excursion;
  * @since 19.10.2016
  *
  */
-public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer> {
+@Repository
+@Transactional
+public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
+        implements ExcursionDAO {
 
     protected ExcursionDAOimpl() {
         super(Excursion.class);

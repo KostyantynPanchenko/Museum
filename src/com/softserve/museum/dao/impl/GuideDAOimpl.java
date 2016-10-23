@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import com.softserve.museum.dao.generic.GuideDAO;
 import com.softserve.museum.domain.Guide;
 
 /**
@@ -25,7 +26,7 @@ import com.softserve.museum.domain.Guide;
  */
 @Repository
 @Transactional
-public class GuideDAOimpl extends AbstractDAO<Guide, Integer> {
+public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDAO {
 
     protected GuideDAOimpl() {
         super(Guide.class);

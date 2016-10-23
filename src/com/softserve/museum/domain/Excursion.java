@@ -98,4 +98,13 @@ public class Excursion {
         this.guide = guide;
     }
 
+    @Override
+    public String toString() {
+        return "Excursion [id=" + id + ", start=" + start + ", end=" + end
+                + ", details=" + details.getName() + ", guide=" 
+                + guide.getFirstName() + " " + guide.getLastName() + "]";
+    }
+    
+    
+
 }
