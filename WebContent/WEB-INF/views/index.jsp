@@ -4,52 +4,23 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:url value="/resources/css/w3.css" var="w3css" />
 <spring:url value="/resources/images/cover.jpg" var="coverPhoto" />
 <spring:url value="/resources/images/avatar.png" var="avatar" />
 
 <html>
-<title>zMuseum</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="${w3css}">
-
+	<jsp:include page="head.jsp"></jsp:include>
 <body>
-
-	<!-- Navbar -->
-	<div class="w3-top">
-		<ul class="w3-navbar w3-black w3-card-2 w3-left-align">			
-			<li><a href="#"
-				class="w3-hover-none w3-hover-text-grey w3-padding-large">HOME</a></li>
-			<li><a href="#museum" class="w3-padding-large">MUSEUM</a></li>
-			<li><a href="#tour"	class="w3-padding-large">TOURS</a></li>
-			<li><a href="#contact" class=" w3-padding-large">CONTACTS</a></li>
-			<li class="w3-dropdown-hover">
-				<a href="javascript:void(0)" class="w3-hover-none w3-padding-large"
-				title="More">MORE <i class="fa fa-caret-down"></i></a>
-				<div class="w3-dropdown-content w3-white w3-card-4">
-					<a href="#">Our guides</a> <a href="#">Exhibits</a>
-				</div></li>
-			<li class="w3-right"><a href="javascript:void(0)"
-				class="w3-padding-large w3-hover-red"><i class="fa fa-search"></i></a></li>
-		</ul>
-	</div>
+	<jsp:include page="menu.jsp"></jsp:include>	
 
 	<!-- Page content -->
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">
-
-		<!-- Automatic Slideshow Images -->
+		
 		<div class="mySlides w3-display-container w3-center">
 			<img src="${coverPhoto}" style="width: 100%">			
 		</div>
 		
-		<!-- The Band Section -->
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" id="band">
+		<!-- The Museum Section -->
+		<div class="w3-container w3-content w3-center w3-padding-64" style="max-width: 800px" id="museum">
 			<h2 class="w3-wide">THE MUSEUM</h2>
 			<p class="w3-opacity">
 				<i>We love programming</i>
@@ -82,7 +53,7 @@
 			</div>
 		</div>
 
-		<!-- The Tour Section -->
+		<!-- The Tours Section -->
 		<div class="w3-black" id="tour">
 			<div class="w3-container w3-content w3-padding-64"
 				style="max-width: 800px">
@@ -104,9 +75,9 @@
 			</div>
 		</div>
 
-		<!-- The Contact Section -->
+		<!-- The Contacts Section -->
 		<div class="w3-container w3-content w3-padding-64"
-			style="max-width: 800px" id="contact">
+			style="max-width: 800px" id="contacts">
 			<h2 class="w3-wide w3-center">CONTACTS</h2>
 			<p class="w3-opacity w3-center">
 				<i>Interested? Drop a note!</i>

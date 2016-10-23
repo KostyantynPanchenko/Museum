@@ -47,6 +47,21 @@ public class CoreController {
         return model;
     }
     
+    @GetMapping("tours")
+    public String onTours() {
+        return "excursions/excursions";
+    }
+    
+    @GetMapping("guides")
+    public String onGuides() {
+        return "guides/guides";
+    }
+    
+    @GetMapping("exhibits")
+    public String onExhibits() {
+        return "exhibits/exhibits";
+    }
+    
     private void testExhibits() {
         System.out.println(" ++++++++++++++++  EXHIBITS   ++++++++++++++++");
         List<Exhibit> exhibits = dao.getAll();

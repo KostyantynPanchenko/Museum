@@ -100,9 +100,10 @@ public class Excursion {
 
     @Override
     public String toString() {
-        return "Excursion [id=" + id + ", start=" + start + ", end=" + end
-                + ", details=" + details.getName() + ", guide=" 
-                + guide.getFirstName() + " " + guide.getLastName() + "]";
+        return "Excursion with id=" + id 
+                + ", starts at " + start + ", ends at " + end
+                + ", tour name is '" + details.getName() + "', guide=" 
+                + guide.getFirstName() + " " + guide.getLastName();
     }
     
     
