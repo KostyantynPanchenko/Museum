@@ -46,11 +46,11 @@ public class Excursion {
     private LocalDateTime end;
     
     @ManyToOne
-    @JoinColumn(referencedColumnName = "details_id")
+    @JoinColumn(name = "details_id", referencedColumnName = "id")
     private ExcursionDetails details;
     
     @ManyToOne  
-    @JoinColumn(name = "guide_id")
+    @JoinColumn(name = "guide_id", referencedColumnName = "id")
     private Guide guide;
     
     /**

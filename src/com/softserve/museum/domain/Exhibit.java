@@ -41,15 +41,15 @@ public class Exhibit {
     private String name;
     
     @ManyToOne
-    @JoinColumn(referencedColumnName = "author_id")
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
     
     @ManyToOne
-    @JoinColumn(referencedColumnName = "material_id")
+    @JoinColumn(name = "material_id", referencedColumnName = "id")
     private Material material;
     
     @ManyToOne
-    @JoinColumn(referencedColumnName = "technique_id")
+    @JoinColumn(name = "technique_id", referencedColumnName = "id")
     private Technique technique;
     
     /**
@@ -104,6 +104,14 @@ public class Exhibit {
     public final void setTechnique(Technique technique) {
         this.technique = technique;
     }
+
+    @Override
+    public String toString() {
+        return "Exhibit [id=" + id + ", hall=" + hall + ", name=" + name
+                + ", author=" + author.getName() + ", material=" + material.getDescription()
+                + ", technique=" + technique.getDescription() + "]";
+    }
+    
     
     
 }

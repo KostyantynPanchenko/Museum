@@ -27,6 +27,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.softserve.museum.dao.impl.Impl;
 import com.softserve.museum.domain.Entities;
 
 /**
@@ -41,7 +42,8 @@ import com.softserve.museum.domain.Entities;
 @PropertySources({
         @PropertySource("config/jdbc.properties"),
         @PropertySource("config/hibernate.properties")})
-@ComponentScan(basePackageClasses = {PersistenceConfig.class, Entities.class})
+@ComponentScan(
+        basePackageClasses = {PersistenceConfig.class, Entities.class, Impl.class})
 public class PersistenceConfig {
 
     @Autowired
@@ -59,7 +61,7 @@ public class PersistenceConfig {
         return ds;
     }
     
-    @Bean
+    @Bean(name = "sessionFactory")
     public LocalSessionFactoryBean sessionFactory(DataSource ds) {
         LocalSessionFactoryBean sf = new LocalSessionFactoryBean();
         sf.setDataSource(ds);
@@ -78,7 +80,7 @@ public class PersistenceConfig {
     }
     
     @Bean
-    public HibernateTransactionManager txMAnager(SessionFactory sf) {
+    public HibernateTransactionManager txManager(SessionFactory sf) {
         return new HibernateTransactionManager(sf);
     }
     

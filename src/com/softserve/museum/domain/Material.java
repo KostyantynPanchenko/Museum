@@ -32,7 +32,7 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @Column(name = "name")
+    @Column(name = "description")
     private String description;
     
     /**

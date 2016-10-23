@@ -9,9 +9,15 @@
 
 package com.softserve.museum.web.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.softserve.museum.domain.Exhibit;
+import com.softserve.museum.dao.generic.ExhibitDAO;
 
 /**
  * 
@@ -25,9 +31,22 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CoreController {
 
+    @Autowired
+    private ExhibitDAO dao;
+    
     @GetMapping("/")
     public ModelAndView onIndex() {
+        testHibernate();
         ModelAndView model = new ModelAndView("index");
         return model;
+    }
+    
+    private void testHibernate() {
+        System.out.println(" ++++++++++++++++  HIBERNATE  ++++++++++++++++");
+        List<Exhibit> exhibits = dao.getAll();
+        for (Exhibit ex: exhibits) {
+            System.out.println(ex);
+        }
+        System.out.println(" ++++++++++++++++ END OF TEST ++++++++++++++++");
     }
 }

@@ -17,7 +17,6 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.GenericDAO;
@@ -36,7 +35,6 @@ import com.softserve.museum.dao.generic.GenericDAO;
 public abstract class AbstractDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
     @Autowired
-    @Qualifier("hibernateSessionFactory")
     private SessionFactory sessionFactory;
     
     private Class<T> entityClass;
