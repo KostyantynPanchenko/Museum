@@ -9,14 +9,81 @@
  */
 package com.softserve.museum.web.config;
 
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.softserve.museum.domain.Entities;
+
 /**
- * Web MVC java-based configuration. Here all necessary beans are declared and
- * static resources (like css or html pages) handling is configured.
+ * Persistence configuration. 
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
- * @since 22.10.2016
+ * @since 23.10.2016
  */
+@Configuration
+@EnableTransactionManagement
+@PropertySources({
+        @PropertySource("config/jdbc.properties"),
+        @PropertySource("config/hibernate.properties")})
+@ComponentScan(basePackageClasses = {PersistenceConfig.class, Entities.class})
 public class PersistenceConfig {
 
+    @Autowired
+    private Environment env;
+    
+    private String[] packages = {"com.softserve.museum.domain"};
+    
+    @Bean
+    public DataSource dataSource() {
+        BasicDataSource ds = new BasicDataSource();
+        ds.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        ds.setUrl(env.getProperty("jdbc.url"));
+        ds.setUsername(env.getProperty("jdbc.username"));
+        ds.setPassword(env.getProperty("jdbc.password"));
+        return ds;
+    }
+    
+    @Bean
+    public LocalSessionFactoryBean sessionFactory(DataSource ds) {
+        LocalSessionFactoryBean sf = new LocalSessionFactoryBean();
+        sf.setDataSource(ds);
+        sf.setPackagesToScan(packages);
+        sf.setHibernateProperties(getHibernateProperties());
+        return sf;
+    }
+    
+    private Properties getHibernateProperties() {
+        Properties props = new Properties();
+        props.put("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
+        props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        return props;
+    }
+    
+    @Bean
+    public HibernateTransactionManager txMAnager(SessionFactory sf) {
+        return new HibernateTransactionManager(sf);
+    }
+    
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslator() {
+        return new PersistenceExceptionTranslationPostProcessor();
+    }
 }
