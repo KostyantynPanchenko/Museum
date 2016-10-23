@@ -27,20 +27,7 @@
 				<i>We love programming</i>
 			</p>
 			<p class="w3-justify">OUR EXHIBITS</p>
-			<div class="w3-row w3-padding-32">
-				<div class="w3-half">
-					<p>Kostyantyn Panchenko</p>
-					<img src="${avatar}"
-						class="w3-round w3-margin-bottom" alt="Kostyantyn Panchenko"
-						style="width: 60%">
-				</div>
-				<div class="w3-half">
-					<p>Yuri Puschalo</p>
-					<img src="${avatar}"
-						class="w3-round w3-margin-bottom" alt="Yuri Puschalo"
-						style="width: 60%">
-				</div>
-			</div>
+		
 		</div>
 	</div>
 		
