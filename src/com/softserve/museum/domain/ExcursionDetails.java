@@ -41,4 +41,34 @@ public class ExcursionDetails {
     @Column
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalTime duration;
+    
+    /**
+     * Default no-args constructor
+     */
+    public ExcursionDetails() { }
+
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(int id) {
+        this.id = id;
+    }
+
+    public final String getName() {
+        return name;
+    }
+
+    public final void setName(String name) {
+        this.name = name;
+    }
+
+    public final LocalTime getDuration() {
+        return duration;
+    }
+
+    public final void setDuration(LocalTime duration) {
+        this.duration = duration;
+    }
+    
 }

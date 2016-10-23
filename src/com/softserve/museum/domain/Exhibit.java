@@ -51,4 +51,59 @@ public class Exhibit {
     @ManyToOne
     @JoinColumn(referencedColumnName = "technique_id")
     private Technique technique;
+    
+    /**
+     * Default no-args constructor
+     */
+    public Exhibit() { }
+
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(int id) {
+        this.id = id;
+    }
+
+    public final int getHall() {
+        return hall;
+    }
+
+    public final void setHall(int hall) {
+        this.hall = hall;
+    }
+
+    public final String getName() {
+        return name;
+    }
+
+    public final void setName(String name) {
+        this.name = name;
+    }
+
+    public final Author getAuthor() {
+        return author;
+    }
+
+    public final void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public final Material getMaterial() {
+        return material;
+    }
+
+    public final void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public final Technique getTechnique() {
+        return technique;
+    }
+
+    public final void setTechnique(Technique technique) {
+        this.technique = technique;
+    }
+    
+    
 }

@@ -10,6 +10,8 @@ package com.softserve.museum.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +38,46 @@ public class Guide {
     private String firstName;
     
     @Column(name = "last_name")
-    private String lastName;    
+    private String lastName;
+    
+    @Enumerated(EnumType.STRING)
+    private Position position;
+    
+    /**
+     * Default no-args constructor
+     */
+    public Guide() { }
+
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(int id) {
+        this.id = id;
+    }
+
+    public final String getFirstName() {
+        return firstName;
+    }
+
+    public final void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public final String getLastName() {
+        return lastName;
+    }
+
+    public final void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public final Position getPosition() {
+        return position;
+    }
+
+    public final void setPosition(Position position) {
+        this.position = position;
+    }
 
 }

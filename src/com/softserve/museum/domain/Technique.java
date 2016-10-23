@@ -34,4 +34,26 @@ public class Technique {
     
     @Column(name = "description")
     private String description;
+    
+    /**
+     * Default no-args constructor
+     */
+    public Technique() { }
+
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(int id) {
+        this.id = id;
+    }
+
+    public final String getDescription() {
+        return description;
+    }
+
+    public final void setDescription(String description) {
+        this.description = description;
+    }
+    
 }

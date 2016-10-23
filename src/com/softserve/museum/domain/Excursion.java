@@ -52,5 +52,50 @@ public class Excursion {
     @ManyToOne  
     @JoinColumn(name = "guide_id")
     private Guide guide;
+    
+    /**
+     * Default no-args constructor
+     */
+    public Excursion() { }
+
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(int id) {
+        this.id = id;
+    }
+
+    public final LocalDateTime getStart() {
+        return start;
+    }
+
+    public final void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public final LocalDateTime getEnd() {
+        return end;
+    }
+
+    public final void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public final ExcursionDetails getDetails() {
+        return details;
+    }
+
+    public final void setDetails(ExcursionDetails details) {
+        this.details = details;
+    }
+
+    public final Guide getGuide() {
+        return guide;
+    }
+
+    public final void setGuide(Guide guide) {
+        this.guide = guide;
+    }
 
 }
