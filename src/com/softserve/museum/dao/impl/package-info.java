@@ -8,11 +8,11 @@
  */
 /**
  * 
- * DAO classes.
+ * Implementations of DAO classes.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
  * @since 22.10.2016
  *
  */
-package com.softserve.museum.dao;
+package com.softserve.museum.dao.impl;

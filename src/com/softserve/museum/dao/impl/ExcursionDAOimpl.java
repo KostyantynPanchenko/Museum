@@ -6,13 +6,23 @@
  * This software is the confidential and proprietary information of Softserve.
  * 
  */
+package com.softserve.museum.dao.impl;
+
+import com.softserve.museum.domain.Excursion;
+
 /**
  * 
- * DAO classes.
+ * DAO class for Excursion entity.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
- * @since 22.10.2016
+ * @since 19.10.2016
  *
  */
-package com.softserve.museum.dao;
+public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer> {
+
+    protected ExcursionDAOimpl() {
+        super(Excursion.class);
+    }
+
+}

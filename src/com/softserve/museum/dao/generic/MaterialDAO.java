@@ -6,13 +6,19 @@
  * This software is the confidential and proprietary information of Softserve.
  * 
  */
+package com.softserve.museum.dao.generic;
+
+import com.softserve.museum.domain.Material;
+
 /**
  * 
- * DAO classes.
+ * Establish contract for Material class CRUD operations.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
- * @since 22.10.2016
+ * @since 15.10.2016
  *
  */
-package com.softserve.museum.dao;
+public interface MaterialDAO extends GenericDAO<Material, Integer> {
+
+}
