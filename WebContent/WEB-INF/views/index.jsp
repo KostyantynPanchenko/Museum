@@ -110,34 +110,24 @@
 	<!-- Add Google Maps -->
 	<div id="googleMap"
 		style="height: 400px; filter: grayscale(50%); -webkit-filter: grayscale(50%);"></div>
-	<!-- script src="https://maps.googleapis.com/maps/api/js"></script-->
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1reMf-jjgha7NXk5QaWzl2wxGkhyLfug&callback=initMap" type="text/javascript"></script>
 	
 	<script>
-		var myCenter = new google.maps.LatLng(49.832751, 23.997182);		
-
-		function initialize() {
-			var mapProp = {
-				center : myCenter,
-				zoom : 14,
-				scrollwheel : false,
-				draggable : false,
-				mapTypeId : google.maps.MapTypeId.ROADMAP
-			};
-
-			var map = new google.maps.Map(document.getElementById("googleMap"),
-					mapProp);
-
-			var marker = new google.maps.Marker({
-				position : myCenter,
-			});
-
-			marker.setMap(map);
-		}
-
-		google.maps.event.addDomListener(window, 'load', initialize);
-	</script>
-
+      function initMap() {
+        var uluru = {lat: 49.832751, lng: 23.997182};
+        var map = new google.maps.Map(document.getElementById('googleMap'), {
+          zoom: 14,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1reMf-jjgha7NXk5QaWzl2wxGkhyLfug&callback=initMap">
+    </script>
+    
 	<!-- Footer -->
 	<footer
 		class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">		
