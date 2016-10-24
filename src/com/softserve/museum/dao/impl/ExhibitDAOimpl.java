@@ -8,12 +8,17 @@
  */
 package com.softserve.museum.dao.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.ExhibitDAO;
+import com.softserve.museum.domain.Author;
 import com.softserve.museum.domain.Exhibit;
+import com.softserve.museum.domain.Material;
+import com.softserve.museum.domain.Technique;
 
 /**
  * 
@@ -30,6 +35,30 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 
     public ExhibitDAOimpl() {
         super(Exhibit.class);
+    }
+
+    @Override
+    public List<Exhibit> findExhibitByAuthor(Author author) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Exhibit> findExhibitByMaterial(Material material) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Exhibit> findExhibitByTechnique(Technique technique) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Exhibit> findExhibitByHall(Integer hallNumber) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

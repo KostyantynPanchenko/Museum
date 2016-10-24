@@ -6,7 +6,7 @@
  * This software is the confidential and proprietary information of Softserve.
  * 
  */
-package com.softserve.museum.dao.generic;
+package com.softserve.museum.service;
 
 import java.sql.Time;
 import java.util.List;
@@ -15,19 +15,26 @@ import com.softserve.museum.domain.Excursion;
 
 /**
  * 
- * Establish contract for Excursion class CRUD operations.
+ * Excursion service.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
- * @since 23.10.2016
+ * @since 24.10.2016
  *
  */
-public interface ExcursionDAO extends GenericDAO<Excursion, Integer> {
+public interface ExcursionService {
 
+    public abstract Integer save(Excursion excursion);
+    
+    public abstract Excursion update(Excursion excursion);
+    
+    public abstract void delete(Excursion excursion);
+    
+    public abstract List<Excursion> listExcursions();
+    
     public abstract List<Excursion> findExcursionByTime(Time start, Time end);
-
+    
     public abstract List<Excursion> findExcursionByStart(Time start);
     
-    
-
+    public abstract List<Excursion> findExcursionByEnd(Time end);
 }

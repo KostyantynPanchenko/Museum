@@ -6,7 +6,7 @@
  * This software is the confidential and proprietary information of Softserve.
  * 
  */
-package com.softserve.museum.dao.generic;
+package com.softserve.museum.service;
 
 import java.sql.Time;
 import java.util.List;
@@ -15,20 +15,26 @@ import com.softserve.museum.domain.Guide;
 
 /**
  * 
- * Establish contract for Guided class CRUD operations.
+ * Excursion service.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
- * @since 23.10.2016
+ * @since 24.10.2016
  *
  */
-public interface GuideDAO extends GenericDAO<Guide, Integer> {
+public interface GuideService {
+    
+    public abstract Integer save(Guide guide);
+    
+    public abstract Guide update(Guide guide);
+    
+    public abstract void delete(Guide guiden);
 
+    public abstract List<Guide> listGuides();
+    
     public abstract List<Guide> findGuideByTime(Time start, Time end);
-
+    
     public abstract int getCountGuidesByPeriod(Time start, Time end);
-
-    public abstract List<Guide> getCountTotalTimePerGuideByPeriod(Time start,
-            Time end);
-
+    
+    public abstract List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end);
 }

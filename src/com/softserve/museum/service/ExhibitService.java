@@ -6,7 +6,7 @@
  * This software is the confidential and proprietary information of Softserve.
  * 
  */
-package com.softserve.museum.dao.generic;
+package com.softserve.museum.service;
 
 import java.util.List;
 
@@ -17,21 +17,28 @@ import com.softserve.museum.domain.Technique;
 
 /**
  * 
- * Establish contract for Exhibit class CRUD operations.
+ * Exhibit service.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
- * @since 23.10.2016
+ * @since 24.10.2016
  *
  */
-public interface ExhibitDAO extends GenericDAO<Exhibit, Integer> {
+public interface ExhibitService {
+    
+    public abstract Integer save(Exhibit exhibit);
+    
+    public abstract Exhibit update(Exhibit exhibit);
+    
+    public abstract void delete(Exhibit exhibit);
 
+    public abstract List<Exhibit> listExhibits();
+    
     public abstract List<Exhibit> findExhibitByAuthor(Author author);
-
+    
     public abstract List<Exhibit> findExhibitByMaterial(Material material);
-
+    
     public abstract List<Exhibit> findExhibitByTechnique(Technique technique);
-
+    
     public abstract List<Exhibit> findExhibitByHall(Integer hallNumber);
-
 }

@@ -8,6 +8,9 @@
  */
 package com.softserve.museum.dao.impl;
 
+import java.sql.Time;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -31,6 +34,18 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
 
     protected ExcursionDAOimpl() {
         super(Excursion.class);
+    }
+
+    @Override
+    public List<Excursion> findExcursionByTime(Time start, Time end) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Excursion> findExcursionByStart(Time start) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

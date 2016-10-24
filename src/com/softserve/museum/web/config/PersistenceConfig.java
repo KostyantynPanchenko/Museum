@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.softserve.museum.dao.impl.Impl;
 import com.softserve.museum.domain.Entities;
+import com.softserve.museum.service.ExcursionService;
 
 /**
  * Persistence configuration. 
@@ -43,7 +44,10 @@ import com.softserve.museum.domain.Entities;
         @PropertySource("config/jdbc.properties"),
         @PropertySource("config/hibernate.properties")})
 @ComponentScan(
-        basePackageClasses = {PersistenceConfig.class, Entities.class, Impl.class})
+        basePackageClasses = {PersistenceConfig.class, 
+                                Entities.class, 
+                                Impl.class,
+                                ExcursionService.class})
 public class PersistenceConfig {
 
     @Autowired

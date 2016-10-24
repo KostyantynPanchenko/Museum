@@ -8,6 +8,9 @@
  */
 package com.softserve.museum.dao.impl;
 
+import java.sql.Time;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -30,6 +33,24 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 
     protected GuideDAOimpl() {
         super(Guide.class);
+    }
+
+    @Override
+    public List<Guide> findGuideByTime(Time start, Time end) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int getCountGuidesByPeriod(Time start, Time end) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
