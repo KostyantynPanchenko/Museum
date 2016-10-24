@@ -6,4 +6,9 @@
 		href="https://fonts.googleapis.com/css?family=Lato">
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+	<style>
+		.padding-lang {
+			padding: 16px 4px 16px 4 px;			
+		}
+	</style>
 </head>

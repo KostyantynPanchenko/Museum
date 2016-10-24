@@ -15,8 +15,8 @@
 	<!-- Page content -->
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">
 		
-		<div class="mySlides w3-display-container w3-center">
-			<img src="${coverPhoto}" style="width: 100%">			
+		<div class="w3-display-container w3-text-white w3-center">
+			<img src="${coverPhoto}" style="width: 100%">  					
 		</div>
 		
 		<!-- The Museum Section -->

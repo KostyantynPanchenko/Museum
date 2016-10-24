@@ -34,15 +34,23 @@
 				<a href="${tours}"><spring:message code="menu.tours"/> </a>
 			</div></li>		
 		
-		<!--li class="w3-right w3-hover-none"><a href="" class="w3-padding-large w3-hover-none"><img src="${GB}" width="24px" /></a></li>
-		<li class="w3-right w3-hover-none"><a href="" class="w3-padding-large w3-hover-none"><img src="${UA}" width="24px" /></a></li-->
+		<li class="w3-right w3-hover-none w3-padding-0">
+			<a href="${en}" class="w3-padding-16 w3-hover-none" style="padding: 16px 4px 16px 4px; margin-right: 32px">
+				<img src="${GB}" width="16px" />
+			</a>
+		</li>
+		<li class="w3-right w3-hover-none w3-padding-0">
+			<a href="${uk}" class="w3-padding-16 w3-hover-none" style="padding: 16px 0px 16px 0px">
+				<img src="${UA}" width="16px" />
+			</a>
+		</li>
 		
 						
-		<li class="w3-right w3-hover-none"><a href="${uk}" class="w3-padding-large">
+		<!--li class="w3-right w3-hover-none w3-padding-0"><a href="${uk}" class="w3-padding-0">
 			<span class="w3-text-blue">U</span><span class="w3-text-yellow">K</span>
 		</a></li>						
-		<li class="w3-right w3-hover-none"><a href="${en}" class="w3-padding-large">
-			<span class="w3-text-red">G</span><span class="w3-text-blue">B</span>
-		</a></li>
+		<li class="w3-right w3-hover-none w3-padding-0"><a href="${en}" class="w3-padding-0">
+			<span class="w3-text-blue">G</span><span class="w3-text-red">B</span>
+		</a></li-->
 	</ul>
 </div>
