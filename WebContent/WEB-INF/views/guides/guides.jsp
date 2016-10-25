@@ -25,7 +25,7 @@
 					<c:forEach items="${guides}" var="current">
 						<tr>
 							<td>${current.firstName} ${current.lastName}</td>
-							<td>${current.position}</td>							
+							<td>${current.position.toString()}</td>							
 						</tr>
 					</c:forEach>
 				</table>

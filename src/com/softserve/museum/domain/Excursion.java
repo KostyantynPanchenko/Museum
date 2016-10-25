@@ -20,6 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.softserve.museum.utils.LocalDateTimeConverter;
+
 /**
  * 
  * Entity class, represents museum's excursion.
