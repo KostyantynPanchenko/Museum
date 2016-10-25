@@ -20,7 +20,6 @@ import com.softserve.museum.domain.Author;
 import com.softserve.museum.domain.Excursion;
 import com.softserve.museum.domain.Exhibit;
 import com.softserve.museum.domain.Guide;
-import com.softserve.museum.domain.Material;
 import com.softserve.museum.service.ExcursionService;
 import com.softserve.museum.service.ExhibitService;
 import com.softserve.museum.service.GuideService;

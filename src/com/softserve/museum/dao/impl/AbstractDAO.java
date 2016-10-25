@@ -53,7 +53,7 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
     @Override
     public List<T> getAll() {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(entityClass);
-        criteria.addOrder(Order.desc("id"));
+        criteria.addOrder(Order.asc("id"));
         return criteria.list();
     }
 

@@ -16,25 +16,12 @@
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
 		<div class="w3-container w3-content w3-center w3-padding-64"
 			style="max-width: 800px" >
-			<h2 class="w3-wide"><spring:message code="menu.guides" /></h2>
-			<c:if test="${not empty guides}">
-				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
-					<thead>
-					<tr class="w3-light-grey"><th>Name</th><th>Position</th></tr>
-					</thead>
-					<c:forEach items="${guides}" var="current">
-						<tr>
-							<td>${current.firstName} ${current.lastName}</td>
-							<td>${current.position.toString()}</td>							
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>		
-		</div>
-		
-		<div>
+			<h2 class="w3-wide">Find available guides by specified time:</h2>
 			<spring:url value="/guides/available" var="availableGuides"></spring:url>
-			<a href="${availableGuides}">Find available guides</a>
+			<form method="POST" action="${availableGuides}">
+				<input type="datetime-local" name="start" />
+				<input type="submit" />
+			</form>
 		</div>
 	</div>		
 		

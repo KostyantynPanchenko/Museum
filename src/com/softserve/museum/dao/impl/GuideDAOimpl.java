@@ -39,8 +39,6 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Guide> findGuideByTime(Time start, Time end) {
-		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
 		StringBuilder query = new StringBuilder(
 				"FROM guides WHERE id NOT IN (SELECT guide_id FROM excursions AS XS WHERE (XS.start BETWEEN '");
 		query.append(start.toString() + "' AND '");
@@ -50,7 +48,6 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
 
 		return result.list();
-		// return null;
 	}
 
 	@Override
