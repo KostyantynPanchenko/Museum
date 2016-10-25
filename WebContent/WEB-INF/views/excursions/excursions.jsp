@@ -1,6 +1,8 @@
 <%@ page session="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -13,21 +15,25 @@
 	<jsp:include page="../menu.jsp"></jsp:include>	
 
 	<!-- Page content -->
-	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">
-		
-		<div class="mySlides w3-display-container w3-center">
-			<img src="${coverPhoto}" style="width: 100%">			
-		</div>
-		
-		<!-- The Museum Section -->
+	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
 		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" id="band">
-			<h2 class="w3-wide">THE MUSEUM</h2>
-			<p class="w3-opacity">
-				<i>We love programming</i>
-			</p>
-			<p class="w3-justify">OUR EXCURSIONS</p>
-			
+			style="max-width: 800px" >
+			<h2 class="w3-wide"><spring:message code="menu.tours" /></h2>
+			<c:if test="${not empty excursions}">
+				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
+					<thead>
+					<tr class="w3-light-grey"><th>Name</th><th>Start</th><th>Duration</th><th>Guide</th></tr>
+					</thead>
+					<c:forEach items="${excursions}" var="current">
+						<tr>
+							<td>${current.details.name}</td>
+							<td>${current.start}</td>
+							<td>${current.details.duration}</td>
+							<td>${current.guide.firstName} ${current.guide.lastName}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>
 		</div>
 	</div>
 		

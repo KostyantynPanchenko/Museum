@@ -13,21 +13,23 @@
 	<jsp:include page="../menu.jsp"></jsp:include>	
 
 	<!-- Page content -->
-	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">
-		
-		<div class="mySlides w3-display-container w3-center">
-			<img src="${coverPhoto}" style="width: 100%">			
-		</div>
-		
-		<!-- The Museum Section -->
+	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
 		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" id="band">
-			<h2 class="w3-wide">THE MUSEUM</h2>
-			<p class="w3-opacity">
-				<i>We love programming</i>
-			</p>
-			<p class="w3-justify">OUR GUIDES</p>
-		
+			style="max-width: 800px" >
+			<h2 class="w3-wide"><spring:message code="menu.guides" /></h2>
+			<c:if test="${not empty guides}">
+				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
+					<thead>
+					<tr class="w3-light-grey"><th>Name</th><th>Position</th></tr>
+					</thead>
+					<c:forEach items="${guides}" var="current">
+						<tr>
+							<td>${current.firstName} ${current.lastName}</td>
+							<td>${current.position}</td>							
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>		
 		</div>
 	</div>		
 		
