@@ -17,9 +17,9 @@
 <!-- Navbar -->
 <div class="w3-top">
 	<ul class="w3-navbar w3-black w3-card-2 w3-left-align">
-		<li><a href="${home}" class="w3-hover-none w3-hover-text-grey w3-padding-large">
-			<i class="fa fa-home w3-large"></i></a></li>
-		<li><a href="${museum}" class="w3-padding-large">
+		<li><a href="${home}" class="w3-hover-none w3-hover-text-grey w3-padding-large" >
+			<i class="fa fa-home w3-large"></i> <spring:message code="menu.home"/></a></li>
+		<li><a href="${museum}" class="w3-padding-large" >
 			<spring:message code="menu.museum"/></a></li>		
 		<li><a href="${contacts}" class="w3-padding-large">
 			<spring:message code="menu.contacts"/></a></li>

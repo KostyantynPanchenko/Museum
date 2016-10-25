@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.softserve.museum.domain.Excursion;
 import com.softserve.museum.domain.Exhibit;
+import com.softserve.museum.domain.Guide;
 import com.softserve.museum.service.ExcursionService;
 import com.softserve.museum.service.ExhibitService;
+import com.softserve.museum.service.GuideService;
 
 /**
  * 
@@ -39,27 +41,39 @@ public class CoreController {
     @Autowired
     private ExhibitService exhibitService;
     
+    @Autowired
+    private GuideService guideService;
+    
     @GetMapping("/")
     public ModelAndView onIndex() {
         testExhibits();
         testExcursions();
-        ModelAndView model = new ModelAndView("index");
+        ModelAndView model = new ModelAndView("index");        
         return model;
     }
     
     @GetMapping("tours")
-    public String onTours() {
-        return "excursions/excursions";
+    public ModelAndView onTours() {
+        ModelAndView model = new ModelAndView("excursions/excursions");
+        List<Excursion> excursions = excursionService.listExcursions();
+        model.addObject("excursions", excursions);
+        return model;
     }
     
     @GetMapping("guides")
-    public String onGuides() {
-        return "guides/guides";
+    public ModelAndView onGuides() {
+        ModelAndView model = new ModelAndView("guides/guides");
+        List<Guide> guides = guideService.listGuides();
+        model.addObject("guides", guides);
+        return model;
     }
     
     @GetMapping("exhibits")
-    public String onExhibits() {
-        return "exhibits/exhibits";
+    public ModelAndView onExhibits() {
+        ModelAndView model = new ModelAndView("exhibits/exhibits");
+        List<Exhibit> exhibits = exhibitService.listExhibits();
+        model.addObject("exhibits", exhibits);
+        return model;
     }
     
     private void testExhibits() {
