@@ -6,10 +6,10 @@
  * This software is the confidential and proprietary information of Softserve.
  * 
  */
-package com.softserve.museum.domain;
+package com.softserve.museum.utils;
 
-import java.sql.Time;
-import java.time.LocalTime;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -24,17 +24,17 @@ import javax.persistence.Converter;
  *
  */
 @Converter
-public class LocalTimeConverter
-        implements AttributeConverter<LocalTime, Time> {
+public class LocalDateTimeConverter
+        implements AttributeConverter<LocalDateTime, Timestamp> {
 
     @Override
-    public Time convertToDatabaseColumn(LocalTime attribute) {       
-        return ((attribute == null) ? null : Time.valueOf(attribute));
+    public Timestamp convertToDatabaseColumn(LocalDateTime attribute) {       
+        return ((attribute == null) ? null : Timestamp.valueOf(attribute));
     }
 
     @Override
-    public LocalTime convertToEntityAttribute(Time dbData) {
-        return ((dbData == null) ? null : dbData.toLocalTime());
+    public LocalDateTime convertToEntityAttribute(Timestamp dbData) {
+        return ((dbData == null) ? null : dbData.toLocalDateTime());
     }
 
 }

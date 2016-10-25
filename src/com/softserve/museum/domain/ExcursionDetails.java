@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.softserve.museum.utils.LocalTimeConverter;
+
 /**
  * 
  * Entity class, represents museum's guide.

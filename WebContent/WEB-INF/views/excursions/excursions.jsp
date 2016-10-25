@@ -24,10 +24,11 @@
 					<thead>
 					<tr class="w3-light-grey"><th>Name</th><th>Start</th><th>Duration</th><th>Guide</th></tr>
 					</thead>
+					<jsp:useBean id="myFormatter" class="com.softserve.museum.utils.LocalDateTimeCustomFormatter" scope="page"></jsp:useBean>
 					<c:forEach items="${excursions}" var="current">
 						<tr>
 							<td>${current.details.name}</td>
-							<td>${current.start}</td>
+							<td>${myFormatter.format(current.start)}</td>
 							<td>${current.details.duration}</td>
 							<td>${current.guide.firstName} ${current.guide.lastName}</td>
 						</tr>
