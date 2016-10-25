@@ -35,7 +35,7 @@ import com.softserve.museum.dao.generic.GenericDAO;
 public abstract class AbstractDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory;
     
     private Class<T> entityClass;
     

@@ -44,7 +44,7 @@ public class GuideServiceImpl implements GuideService {
     }
 
     @Override
-    public int getCountGuidesByPeriod(Time start, Time end) {
+    public List<Guide> getCountGuidesByPeriod(Time start, Time end) {
         return guides.getCountGuidesByPeriod(start, end);
     }
 

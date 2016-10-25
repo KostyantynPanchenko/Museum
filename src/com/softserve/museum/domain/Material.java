@@ -30,7 +30,8 @@ public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+   // private int id;
+    private java.lang.Integer id;
     
     @Column(name = "description")
     private String description;

@@ -13,6 +13,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Expression;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.ExcursionDAO;
@@ -27,6 +29,7 @@ import com.softserve.museum.domain.Excursion;
  * @since 19.10.2016
  *
  */
+@SuppressWarnings("deprecation")
 @Repository
 @Transactional
 public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
@@ -36,10 +39,13 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
         super(Excursion.class);
     }
 
+	@SuppressWarnings("unchecked")
     @Override
     public List<Excursion> findExcursionByTime(Time start, Time end) {
-        // TODO Auto-generated method stub
-        return null;
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Excursion.class);
+		criteria.add(Expression.ge("start", start));
+		criteria.add(Expression.le("start", start));
+		return criteria.list();
     }
 
     @Override

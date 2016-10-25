@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.GuideDAO;
@@ -31,26 +32,37 @@ import com.softserve.museum.domain.Guide;
 @Transactional
 public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDAO {
 
-    protected GuideDAOimpl() {
-        super(Guide.class);
-    }
+	protected GuideDAOimpl() {
+		super(Guide.class);
+	}
 
-    @Override
-    public List<Guide> findGuideByTime(Time start, Time end) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Guide> findGuideByTime(Time start, Time end) {
+		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    @Override
-    public int getCountGuidesByPeriod(Time start, Time end) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+		StringBuilder query = new StringBuilder(
+				"FROM guides WHERE id NOT IN (SELECT guide_id FROM excursions AS XS WHERE (XS.start BETWEEN '");
+		query.append(start.toString() + "' AND '");
+		query.append(end.toString() + "') OR (XS.end BETWEEN '");
+		query.append(start.toString() + "' AND '");
+		query.append(end.toString() + "'))");
+		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
 
-    @Override
-    public List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+		return result.list();
+		// return null;
+	}
+
+	@Override
+	public List<Guide> getCountGuidesByPeriod(Time start, Time end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

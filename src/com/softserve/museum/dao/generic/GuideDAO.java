@@ -26,7 +26,7 @@ public interface GuideDAO extends GenericDAO<Guide, Integer> {
 
     public abstract List<Guide> findGuideByTime(Time start, Time end);
 
-    public abstract int getCountGuidesByPeriod(Time start, Time end);
+    public abstract List<Guide> getCountGuidesByPeriod(Time start, Time end);
 
     public abstract List<Guide> getCountTotalTimePerGuideByPeriod(Time start,
             Time end);

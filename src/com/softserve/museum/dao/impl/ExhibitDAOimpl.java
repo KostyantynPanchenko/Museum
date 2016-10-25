@@ -8,10 +8,13 @@
  */
 package com.softserve.museum.dao.impl;
 
+//import java.beans.Expression;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Expression;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.ExhibitDAO;
@@ -29,36 +32,47 @@ import com.softserve.museum.domain.Technique;
  * @since 19.10.2016
  *
  */
+@SuppressWarnings("deprecation")
 @Repository
 @Transactional
 public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements ExhibitDAO {
 
-    public ExhibitDAOimpl() {
-        super(Exhibit.class);
-    }
+	public ExhibitDAOimpl() {
+		super(Exhibit.class);
+	}
 
-    @Override
-    public List<Exhibit> findExhibitByAuthor(Author author) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Exhibit> findExhibitByAuthor(Author author) {
 
-    @Override
-    public List<Exhibit> findExhibitByMaterial(Material material) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
+		criteria.add(Expression.eq("author", author));
 
-    @Override
-    public List<Exhibit> findExhibitByTechnique(Technique technique) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+		return criteria.list();
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Exhibit> findExhibitByMaterial(Material material) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
+		criteria.add(Expression.eq("material", material));
+		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
     @Override
-    public List<Exhibit> findExhibitByHall(Integer hallNumber) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	public List<Exhibit> findExhibitByTechnique(Technique technique) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
+		criteria.add(Expression.eq("technique", technique));
+		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Exhibit> findExhibitByHall(Integer hallNumber) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
+		criteria.add(Expression.eq("hall", hallNumber));
+		return criteria.list();
+	}
 
 }
