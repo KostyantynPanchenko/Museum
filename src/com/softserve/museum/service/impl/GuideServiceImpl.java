@@ -9,12 +9,15 @@
 package com.softserve.museum.service.impl;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.softserve.museum.dao.generic.ExcursionDAO;
 import com.softserve.museum.dao.generic.GuideDAO;
+import com.softserve.museum.domain.Excursion;
 import com.softserve.museum.domain.Guide;
 import com.softserve.museum.domain.Position;
 import com.softserve.museum.service.GuideService;
@@ -34,14 +37,37 @@ public class GuideServiceImpl implements GuideService {
     @Autowired
     private GuideDAO guides;
     
+    @Autowired
+    private ExcursionDAO excursions;
+    
     @Override
     public List<Guide> listGuides() {
         return guides.getAll();
     }
 
     @Override
-    public List<Guide> findGuideByTime(Time start, Time end) {
+    public List<Guide> findByTime(Time start, Time end) {
         return guides.findByTime(start, end);
+    }
+    
+    @Override
+    public List<Guide> findByTime(LocalDateTime start,
+            LocalDateTime end) {
+        List<Excursion> eList = excursions.findInPeriod(start, end);
+        
+        for (Excursion e: eList) {
+            System.out.println(e);
+        }
+        
+        List<Guide> gList = guides.getAll();
+        for (Guide g: gList) {
+            System.out.println(g.getFirstName());
+        }
+        
+        for (Excursion e: eList) {
+            gList.remove(e.getGuide());
+        }
+        return gList;
     }
 
     @Override

@@ -51,8 +51,8 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
 
 		return result.list();
-	}
-
+	}    
+    
 	@Override
 	public List<Guide> getCountGuidesByPeriod(Time start, Time end) {
 		// TODO Auto-generated method stub

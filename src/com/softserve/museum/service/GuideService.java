@@ -9,6 +9,7 @@
 package com.softserve.museum.service;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.softserve.museum.domain.Guide;
@@ -28,15 +29,20 @@ public interface GuideService {
     
     public abstract Guide update(Guide guide);
     
-    public abstract void delete(Guide guiden);
+    public abstract void delete(Guide guide);
 
     public abstract List<Guide> listGuides();
     
-    public abstract List<Guide> findGuideByTime(Time start, Time end);
+    public abstract List<Guide> findByTime(Time start, Time end);
+    
+    public abstract List<Guide> findByTime(LocalDateTime startTime,
+            LocalDateTime endTime);
     
     public abstract List<Guide> getCountGuidesByPeriod(Time start, Time end);
     
     public abstract List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end);
 
     public abstract List<Guide> findByPosition(String position);
+
+    
 }

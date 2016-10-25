@@ -4,8 +4,7 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:url value="/resources/images/cover.jpg" var="coverPhoto" />
-<spring:url value="/resources/images/avatar.png" var="avatar" />
+<spring:url value="/guides/available" var="availableGuides"></spring:url>
 
 <html>
 	<jsp:include page="../head.jsp"></jsp:include>
@@ -14,14 +13,15 @@
 
 	<!-- Page content -->
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" >
-			<h2 class="w3-wide">Find available guides by specified time:</h2>
-			<spring:url value="/guides/available" var="availableGuides"></spring:url>
+		<div class="w3-container w3-content w3-center w3-padding-64" style="max-width: 800px" >
+			<h2 class="w3-wide">Find available guides:</h2>
+			<div class="w3-container w3-content w3-center" style="max-width:260px">			
 			<form method="POST" action="${availableGuides}">
-				<input type="datetime-local" name="start" />
-				<input type="submit" />
+				<p>From: <input type="datetime-local" name="start" class="w3-input w3-border" /></p>
+				<p>To: <input type="datetime-local" name="end" class="w3-input w3-border" /></p>
+				<p><input type="submit" class="w3-btn-block w3-round w3-teal"/></p>
 			</form>
+			</div>
 		</div>
 	</div>		
 		

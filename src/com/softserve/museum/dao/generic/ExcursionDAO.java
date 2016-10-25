@@ -9,6 +9,7 @@
 package com.softserve.museum.dao.generic;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.softserve.museum.domain.Excursion;
@@ -27,5 +28,8 @@ public interface ExcursionDAO extends GenericDAO<Excursion, Integer> {
     public abstract List<Excursion> findExcursionByTime(Time start, Time end);
 
     public abstract List<Excursion> findExcursionByStart(Time start);
+
+    public abstract List<Excursion> findInPeriod(LocalDateTime start,
+            LocalDateTime end);
 
 }
