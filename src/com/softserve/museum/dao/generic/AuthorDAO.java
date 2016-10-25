@@ -10,19 +10,18 @@ package com.softserve.museum.dao.generic;
 
 import java.util.List;
 
-import com.softserve.museum.domain.Material;
+import com.softserve.museum.domain.Author;
 
 /**
  * 
- * Establish contract for Material class CRUD operations.
+ * Establish contract for Guided class CRUD operations.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
- * @since 15.10.2016
+ * @since 23.10.2016
  *
  */
-public interface MaterialDAO extends GenericDAO<Material, Integer> {
+public interface AuthorDAO extends GenericDAO<Author, Integer> {
 
-    public abstract List<Material> findMaterialByName(String material);
-
+    public abstract List<Author> findAuthorByName(String name);
 }

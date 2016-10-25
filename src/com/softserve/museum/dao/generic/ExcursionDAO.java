@@ -27,7 +27,5 @@ public interface ExcursionDAO extends GenericDAO<Excursion, Integer> {
     public abstract List<Excursion> findExcursionByTime(Time start, Time end);
 
     public abstract List<Excursion> findExcursionByStart(Time start);
-    
-    
 
 }

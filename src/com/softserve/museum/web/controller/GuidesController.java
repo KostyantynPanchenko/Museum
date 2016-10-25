@@ -40,6 +40,22 @@ public class GuidesController {
     @Autowired
     private GuideService guideService;
     
+    @GetMapping
+    public ModelAndView onGuides() {
+        ModelAndView model = new ModelAndView("guides/guides");
+        List<Guide> guides = guideService.listGuides();
+        model.addObject("guides", guides);
+        return model;
+    }
+    
+    @GetMapping("/all")
+    public ModelAndView all() {
+        ModelAndView model = new ModelAndView("guides/guides");
+        List<Guide> guides = guideService.listGuides();
+        model.addObject("guides", guides);
+        return model;
+    }
+    
     @GetMapping("/available")
     public ModelAndView onAvailable() {
         ModelAndView model = new ModelAndView("guides/guidesAvailable");
@@ -59,5 +75,21 @@ public class GuidesController {
         List<Guide> guides = guideService.listGuides();
         model.addObject("guides", guides);
         return model;
-    }  
+    }
+    
+    @GetMapping("/position")
+    public String onPosition() {
+        return "guides/guidesByPosition";
+    }
+    
+    @PostMapping("/position")
+    public ModelAndView onPosition(@RequestParam(name="position") String position) {
+        ModelAndView model = new ModelAndView("guides/guidesByPositionResults");
+        model.addObject("position", position);
+        
+        List<Guide> guides = guideService.findByPosition(position);
+        
+        model.addObject("guides", guides);
+        return model;
+    }
 }

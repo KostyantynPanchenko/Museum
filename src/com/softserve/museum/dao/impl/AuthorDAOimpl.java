@@ -16,12 +16,12 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.softserve.museum.dao.generic.TechniqueDAO;
-import com.softserve.museum.domain.Technique;
+import com.softserve.museum.dao.generic.AuthorDAO;
+import com.softserve.museum.domain.Author;
 
 /**
  * 
- * DAO class for Technique entity.
+ * DAO class for Guide entity.
  * 
  * @author Kostyantyn Panchenko
  * @version 1.0
@@ -30,18 +30,18 @@ import com.softserve.museum.domain.Technique;
  */
 @Repository
 @Transactional
-public class TechniqueDAOimpl extends AbstractDAO<Technique, Integer> implements TechniqueDAO {
+public class AuthorDAOimpl extends AbstractDAO<Author, Integer> implements AuthorDAO {
 
-    public TechniqueDAOimpl() {
-        super(Technique.class);
-    }
+	protected AuthorDAOimpl() {
+		super(Author.class);
+	}
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Technique> findTechniqueByName(String technique) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Technique.class);
-        criteria.add(Restrictions.eq("description", technique));
+    public List<Author> findAuthorByName(String name) {        
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Author.class);
+        criteria.add(Restrictions.eq("name", name));
         return criteria.list();
-    }
+    }	
 
 }

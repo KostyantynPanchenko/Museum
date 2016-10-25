@@ -37,4 +37,6 @@ public interface GuideService {
     public abstract List<Guide> getCountGuidesByPeriod(Time start, Time end);
     
     public abstract List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end);
+
+    public abstract List<Guide> findByPosition(String position);
 }

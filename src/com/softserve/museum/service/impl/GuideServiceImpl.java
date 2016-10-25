@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.softserve.museum.dao.generic.GuideDAO;
 import com.softserve.museum.domain.Guide;
+import com.softserve.museum.domain.Position;
 import com.softserve.museum.service.GuideService;
 
 /**
@@ -40,7 +41,7 @@ public class GuideServiceImpl implements GuideService {
 
     @Override
     public List<Guide> findGuideByTime(Time start, Time end) {
-        return guides.findGuideByTime(start, end);
+        return guides.findByTime(start, end);
     }
 
     @Override
@@ -66,6 +67,27 @@ public class GuideServiceImpl implements GuideService {
     @Override
     public void delete(Guide guiden) {
         guides.delete(guiden);
+    }
+
+    @Override
+    public List<Guide> findByPosition(String position) {
+        Position thePosition;
+        
+        switch (position.trim().toUpperCase()) {
+        case "MANAGER":
+            thePosition = Position.MANAGER;
+            break;
+        case "GUIDE":
+            thePosition = Position.GUIDE;
+            break;
+        case "CHIEF GUIDE":
+            thePosition = Position.CHIEF_GUIDE;
+            break;
+        default:
+            return null;
+        }
+        
+        return guides.findByPosition(thePosition);         
     }
 
 }

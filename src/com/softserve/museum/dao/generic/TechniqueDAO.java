@@ -8,6 +8,8 @@
  */
 package com.softserve.museum.dao.generic;
 
+import java.util.List;
+
 import com.softserve.museum.domain.Technique;
 
 /**
@@ -20,5 +22,7 @@ import com.softserve.museum.domain.Technique;
  *
  */
 public interface TechniqueDAO extends GenericDAO<Technique, Integer> {
+
+    public abstract List<Technique> findTechniqueByName(String technique);
 
 }

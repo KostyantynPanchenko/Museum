@@ -13,11 +13,14 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.GuideDAO;
 import com.softserve.museum.domain.Guide;
+import com.softserve.museum.domain.Position;
 
 /**
  * 
@@ -38,7 +41,7 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Guide> findGuideByTime(Time start, Time end) {
+	public List<Guide> findByTime(Time start, Time end) {
 		StringBuilder query = new StringBuilder(
 				"FROM guides WHERE id NOT IN (SELECT guide_id FROM excursions AS XS WHERE (XS.start BETWEEN '");
 		query.append(start.toString() + "' AND '");
@@ -61,5 +64,13 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Guide> findByPosition(Position thePosition) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Guide.class);
+        criteria.add(Restrictions.eq("position", thePosition));
+        return criteria.list();
+    }
 
 }
