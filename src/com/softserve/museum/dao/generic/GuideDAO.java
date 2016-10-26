@@ -26,7 +26,7 @@ import com.softserve.museum.domain.Position;
  */
 public interface GuideDAO extends GenericDAO<Guide, Integer> {
 
-    public abstract List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end);
+    public abstract List<Guide> findByTime(LocalDateTime start, LocalDateTime end);
 
 	public abstract List<Guide> findByTime(Time start, Time end);
 

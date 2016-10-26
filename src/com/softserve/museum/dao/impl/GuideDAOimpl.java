@@ -44,7 +44,7 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 	@SuppressWarnings("unchecked")
 	@Override
 
-	public List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end) {
+	public List<Guide> findByTime(LocalDateTime start, LocalDateTime end) {
 		StringBuilder query = new StringBuilder(
 				"FROM Guide WHERE id NOT IN (SELECT guide FROM Excursion AS XS WHERE (XS.start BETWEEN "
 						+ ":startDate AND :endDate) OR (XS.end BETWEEN :startDate AND :endDate))");

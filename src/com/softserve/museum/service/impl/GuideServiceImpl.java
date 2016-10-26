@@ -8,7 +8,6 @@
  */
 package com.softserve.museum.service.impl;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -43,14 +42,6 @@ public class GuideServiceImpl implements GuideService {
     @Override
     public List<Guide> listGuides() {
         return guides.getAll();
-    }
-
-    @Override
-    public List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end) {
-        return guides.findGuideByTime(start, end);
-    }
-    public List<Guide> findByTime(Time start, Time end) {
-        return guides.findByTime(start, end);
     }
     
     @Override
