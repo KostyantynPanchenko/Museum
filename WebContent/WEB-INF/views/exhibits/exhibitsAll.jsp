@@ -14,34 +14,29 @@
 	<jsp:include page="../menu.jsp"></jsp:include>	
 
 	<!-- Page content -->
-	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" >
-			<h2 class="w3-wide"><spring:message code="menu.exhibits" /></h2>
-			
+	<div class="w3-container w3-content w3-center w3-padding-64 w3-card-8" style="max-width: 800px; margin-top: 100px; margin-bottom: 100px" >
+		<h2 class="w3-wide"><spring:message code="menu.exhibits" /></h2>
 			<c:if test="${not empty exhibits}">
-				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
-					<thead>
-					<tr class="w3-light-grey"><th>Name</th><th>Author</th><th>Material</th><th>Technique</th><th>Hall</th></tr>
-					</thead>
-					<c:forEach items="${exhibits}" var="current">
-						<tr>
-							<td>${current.name}</td>
-							<td>${current.author.name}</td>
-							<td>${current.material.description}</td>
-							<td>${current.technique.description}</td>
-							<td>${current.hall}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>	
-					
-		</div>
-		<div class="w3-container w3-content w3-center w3-padding-32" style="max-width: 200px">			
-			<p><a href="${byAuthor}" class="w3-btn-block w3-black">By author</a></p>
-			<p><a href="${byMaterial}" class="w3-btn-block w3-black">By material</a></p>
-			<p><a href="${byTechnique}" class="w3-btn-block w3-black">By technique</a></p>
-		</div>
+			<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
+				<thead>
+				<tr class="w3-light-grey"><th>Name</th><th>Author</th><th>Material</th><th>Technique</th><th>Hall</th></tr>
+				</thead>
+				<c:forEach items="${exhibits}" var="current">
+					<tr>
+						<td>${current.name}</td>
+						<td>${current.author.name}</td>
+						<td>${current.material.description}</td>
+						<td>${current.technique.description}</td>
+						<td>${current.hall}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>	
+	</div>
+	<div class="w3-container w3-content w3-center w3-padding-32" style="max-width: 200px">			
+		<p><a href="${byAuthor}" class="w3-btn-block w3-black">By author</a></p>
+		<p><a href="${byMaterial}" class="w3-btn-block w3-black">By material</a></p>
+		<p><a href="${byTechnique}" class="w3-btn-block w3-black">By technique</a></p>
 	</div>
 		
 	<!-- Footer -->

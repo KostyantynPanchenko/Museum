@@ -14,37 +14,34 @@
 <body>
 	<jsp:include page="../menu.jsp"></jsp:include>	
 
-	<!-- Page content -->
-	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" >
-			<h2 class="w3-wide"><spring:message code="menu.tours" /></h2>
-			<c:if test="${not empty excursions}">
-				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
-					<thead>
-					<tr class="w3-light-grey"><th>Name</th><th>Start</th><th>Duration</th><th>Guide</th></tr>
-					</thead>
-					<jsp:useBean id="myFormatter" class="com.softserve.museum.utils.LocalDateTimeCustomFormatter" scope="page"></jsp:useBean>
-					<c:forEach items="${excursions}" var="current">
-						<tr>
-							<td>${current.details.name}</td>
-							<td>${myFormatter.format(current.start)}</td>
-							<td>${current.details.duration}</td>
-							<td>${current.guide.firstName} ${current.guide.lastName}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>
-		</div>
-		<div class="w3-content" style="max-width: 2000px;">		
+	<!-- Page content -->		
+	<div class="w3-container w3-content w3-center w3-padding-64 w3-card-8"
+		style="max-width: 800px; margin-top: 100px; margin-bottom: 100px" >
+		<h2 class="w3-wide"><spring:message code="menu.tours" /></h2>
+		<c:if test="${not empty excursions}">
+			<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
+				<thead>
+				<tr class="w3-light-grey"><th>Name</th><th>Start</th><th>Duration</th><th>Guide</th></tr>
+				</thead>
+				<jsp:useBean id="myFormatter" class="com.softserve.museum.utils.LocalDateTimeCustomFormatter" scope="page"></jsp:useBean>
+				<c:forEach items="${excursions}" var="current">
+					<tr>
+						<td>${current.details.name}</td>
+						<td>${myFormatter.format(current.start)}</td>
+						<td>${current.details.duration}</td>
+						<td>${current.guide.firstName} ${current.guide.lastName}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+	
 		<div class="w3-container w3-content w3-center" style="max-width: 800px" >
 			<h3 class="w3-wide"><spring:message code="menu.tours" /></h3>
 			<div class="w3-container w3-content w3-center" style="max-width: 200px">
 				<p><a href="${tours}" class="w3-btn-block w3-black">Available tours</a></p>
 				<p><a href="${slot}" class="w3-btn-block w3-black">From .. to ..</a></p>
-			</div>			
+			</div>
 		</div>
-	</div>
 	</div>
 		
 	<!-- Footer -->

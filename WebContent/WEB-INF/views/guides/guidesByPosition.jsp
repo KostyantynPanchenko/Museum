@@ -12,18 +12,14 @@
 <body>
 	<jsp:include page="../menu.jsp"></jsp:include>	
 
-	<!-- Page content -->
-	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" >
-			<h2 class="w3-wide">Enter guide's position:</h2>
+	<!-- Page content -->		
+	<div class="w3-container w3-content w3-center w3-padding-64 w3-card-8" style="max-width: 800px; margin-top: 100px" >
+		<h2 class="w3-wide">Enter guide's position:</h2>
 			
-			<form method="post" action="${position}">
-				<p><input type="text" value="" name="position" class="w3-input w3-border" /></p>
-				<p><input type="submit" class="w3-btn w3-blue"/></p>
-			</form>			
-			
-		</div>
+		<form method="post" action="${position}">
+			<p><input type="text" value="" name="position" class="w3-input w3-border" /></p>
+			<p><input type="submit" class="w3-btn w3-blue"/></p>
+		</form>			
 	</div>
 	<br />
 		

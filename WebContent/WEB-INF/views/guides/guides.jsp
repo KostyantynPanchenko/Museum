@@ -12,32 +12,26 @@
 <body>
 	<jsp:include page="../menu.jsp"></jsp:include>	
 
-	<!-- Page content -->
-	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" >
-			<h2 class="w3-wide"><spring:message code="menu.guides" /></h2>
-			<c:if test="${not empty guides}">
-				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
-					<thead>
-					<tr class="w3-light-grey"><th>Name</th><th>Position</th></tr>
-					</thead>
-					<c:forEach items="${guides}" var="current">
-						<tr>
-							<td>${current.firstName} ${current.lastName}</td>
-							<td>${current.position.toString()}</td>							
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>		
-		</div>
-		
-		<div class="w3-container w3-content w3-center w3-row" style="max-width: 800px">
-			<div class="w3-third"><a href="${position}" class="w3-btn-block w3-black">Find guides by position</a></div>
-			<div class="w3-third w3-right"><a href="${available}" class="w3-btn-block w3-black">Find available guides</a></div>
-		</div>
-		<br />
-	</div>		
+	<!-- Page content -->		
+	<div class="w3-container w3-content w3-center w3-padding-64 w3-card-8" style="max-width: 800px; margin-top: 100px" >
+		<h2 class="w3-wide"><spring:message code="menu.guides" /></h2>
+		<c:if test="${not empty guides}">
+			<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
+				<thead>
+				<tr class="w3-light-grey"><th>Name</th><th>Position</th></tr>
+				</thead>
+				<c:forEach items="${guides}" var="current">
+					<tr>
+						<td>${current.firstName} ${current.lastName}</td>
+						<td>${current.position.toString()}</td>							
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		<br/><br/>		
+		<div class="w3-third"><a href="${position}" class="w3-btn-block w3-black">Find guides by position</a></div>
+		<div class="w3-third w3-right"><a href="${available}" class="w3-btn-block w3-black">Find available guides</a></div>
+	</div>	
 		
 	<!-- Footer -->
 	<footer
