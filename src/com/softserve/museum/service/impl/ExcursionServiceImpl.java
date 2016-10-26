@@ -8,7 +8,7 @@
  */
 package com.softserve.museum.service.impl;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,18 +44,18 @@ public class ExcursionServiceImpl implements ExcursionService {
     }
 
     @Override
-    public List<Excursion> findExcursionByTime(Time start, Time end) {
-        return excursions.findExcursionByTime(start, end);
+    public List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end) {
+        return excursions.findByTimeSlot(start, end);
     }
 
     @Override
-    public List<Excursion> findExcursionByStart(Time start) {
-        return excursions.findExcursionByStart(start);
+    public List<Excursion> findByStart(LocalDateTime start) {
+        return excursions.findByStart(start);
     }
 
     @Override
-    public List<Excursion> findExcursionByEnd(Time end) {
-        return excursions.findExcursionByStart(end);
+    public List<Excursion> findByEnd(LocalDateTime end) {
+        return excursions.findByEnd(end);
     }
 
     @Override

@@ -8,7 +8,7 @@
  */
 package com.softserve.museum.service;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.softserve.museum.domain.Excursion;
@@ -33,11 +33,11 @@ public interface ExcursionService {
     
     public abstract List<ExcursionDetails> listExcursions();
     
-    public abstract List<Excursion> findExcursionByTime(Time start, Time end);
+    public abstract List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end);
     
-    public abstract List<Excursion> findExcursionByStart(Time start);
+    public abstract List<Excursion> findByStart(LocalDateTime start);
     
-    public abstract List<Excursion> findExcursionByEnd(Time end);
+    public abstract List<Excursion> findByEnd(LocalDateTime end);
 
     public abstract List<Excursion> listSchedule();
 }

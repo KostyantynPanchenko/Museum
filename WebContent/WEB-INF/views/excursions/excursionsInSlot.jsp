@@ -17,27 +17,26 @@
 
 	<!-- Page content -->
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
+		<div class="w3-container w3-content w3-center w3-padding-64" style="max-width: 800px" >
+			<h2 class="w3-wide">Find available tours:</h2>
+			<div class="w3-container w3-content w3-center" style="max-width:260px">			
+			<form method="POST" action="${slot}">
+				<p>From: <input type="datetime-local" name="start" class="w3-input w3-border" /></p>
+				<p>To: <input type="datetime-local" name="end" class="w3-input w3-border" /></p>
+				<p><input type="submit" class="w3-btn-block w3-round w3-teal"/></p>
+			</form>
+			</div>
+		</div>
+	</div>	
+	
+	
+	<div class="w3-content" style="max-width: 2000px;">		
+		<div class="w3-container w3-content w3-center"
 			style="max-width: 800px" >
-			<h2 class="w3-wide"><spring:message code="menu.tours" /></h2>
-			<c:if test="${not empty excursions}">
-				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
-					<thead>
-					<tr class="w3-light-grey"><th>Name</th><th>Duration</th></tr>
-					</thead>					
-					<c:forEach items="${excursions}" var="current">
-						<tr>
-							<td>${current.name}</td>
-							<td>${current.duration}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:if>
-			<br/>
-			<div class="w3-container w3-content w3-center w3-padding-32" style="max-width: 200px">
+			<h3 class="w3-wide"><spring:message code="menu.tours" /></h3>
+			<div class="w3-container w3-content w3-center" style="max-width: 200px">
+				<p><a href="${tours}" class="w3-btn-block w3-round w3-teal">Available tours</a></p>
 				<p><a href="${all}" class="w3-btn-block w3-round w3-teal">Weekly schedule</a></p>
-				<p><a href="${slot}" class="w3-btn-block w3-round w3-teal">From .. to ..</a></p>
-				<!--p><a href="${from}" class="w3-btn-block w3-round w3-teal">All after...</a></p-->
 			</div>			
 		</div>
 	</div>

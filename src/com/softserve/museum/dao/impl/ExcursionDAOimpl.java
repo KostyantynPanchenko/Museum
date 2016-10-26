@@ -8,7 +8,6 @@
  */
 package com.softserve.museum.dao.impl;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -42,19 +41,29 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
 
 	@SuppressWarnings("unchecked")
     @Override
-    public List<Excursion> findExcursionByTime(Time start, Time end) {
+    public List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Excursion.class);
 		criteria.add(Restrictions.ge("start", start));
-		criteria.add(Restrictions.le("start", start));
+		criteria.add(Restrictions.le("end", end));
 		return criteria.list();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public List<Excursion> findExcursionByStart(Time start) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Excursion> findByStart(LocalDateTime start) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Excursion.class);
+        criteria.add(Restrictions.ge("start", start));
+        return criteria.list();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Excursion> findByEnd(LocalDateTime end) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Excursion.class);
+        criteria.add(Restrictions.le("end", end));
+        return criteria.list();
+    }
+    
     @SuppressWarnings("unchecked")
     @Override
     public List<Excursion> findInPeriod(LocalDateTime start, LocalDateTime end) {

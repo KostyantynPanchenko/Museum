@@ -4,8 +4,6 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:url value="/resources/images/cover.jpg" var="coverPhoto" />
-<spring:url value="/resources/images/avatar.png" var="avatar" />
 <spring:url value="/exhibits/all" var="all" />
 <spring:url value="/exhibits/byAuthor" var="byAuthor" />
 <spring:url value="/exhibits/byMaterial" var="byMaterial" />

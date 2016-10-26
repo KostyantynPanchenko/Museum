@@ -7,7 +7,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <spring:url value="/tours" var="tours" />
+<spring:url value="/tours/all" var="all" />
 <spring:url value="/tours/timeslot" var="slot" />
+<spring:url value="/tours/from" var="from" />
 
 <html>
 	<jsp:include page="../head.jsp"></jsp:include>
@@ -16,10 +18,10 @@
 
 	<!-- Page content -->
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" >
-			<h2 class="w3-wide"><spring:message code="menu.tours" /></h2>
-			<c:if test="${not empty excursions}">
+		<div class="w3-container w3-content w3-center w3-padding-64" style="max-width: 800px" >
+			<h2 class="w3-wide">Tours in given time slot:</h2>
+			<c:choose>
+				<c:when test="${not empty excursions}">
 				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
 					<thead>
 					<tr class="w3-light-grey"><th>Name</th><th>Start</th><th>Duration</th><th>Guide</th></tr>
@@ -34,17 +36,24 @@
 						</tr>
 					</c:forEach>
 				</table>
-			</c:if>
+				</c:when>
+				<c:otherwise>
+					<h2 class="w3-wide">not found!</h2>				
+				</c:otherwise>	
+			</c:choose>
 		</div>
-		<div class="w3-content" style="max-width: 2000px;">		
+	</div>	
+	
+	
+	<div class="w3-content" style="max-width: 2000px;">		
 		<div class="w3-container w3-content w3-center" style="max-width: 800px" >
 			<h3 class="w3-wide"><spring:message code="menu.tours" /></h3>
 			<div class="w3-container w3-content w3-center" style="max-width: 200px">
 				<p><a href="${tours}" class="w3-btn-block w3-round w3-teal">Available tours</a></p>
-				<p><a href="${slot}" class="w3-btn-block w3-round w3-teal">From .. to ..</a></p>
+				<p><a href="${all}" class="w3-btn-block w3-round w3-teal">Weekly schedule</a></p>
+				<!--p><a href="${from}" class="w3-btn-block w3-round w3-teal">All after...</a></p-->
 			</div>			
 		</div>
-	</div>
 	</div>
 		
 	<!-- Footer -->
