@@ -19,7 +19,7 @@
 			<form method="POST" action="${availableGuides}">
 				<p>From: <input type="datetime-local" name="start" class="w3-input w3-border" /></p>
 				<p>To: <input type="datetime-local" name="end" class="w3-input w3-border" /></p>
-				<p><input type="submit" class="w3-btn-block w3-round w3-teal"/></p>
+				<p><input type="submit" class="w3-btn-block w3-blue"/></p>
 			</form>
 			</div>
 		</div>

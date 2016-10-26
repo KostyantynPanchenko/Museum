@@ -20,15 +20,10 @@
 			
 			<form method="post" action="${position}">
 				<p><input type="text" value="" name="position" class="w3-input w3-border" /></p>
-				<p><input type="submit" class="w3-btn w3-round w3-teal"/></p>
+				<p><input type="submit" class="w3-btn w3-blue"/></p>
 			</form>			
 			
 		</div>
-	</div>
-		
-	<div class="w3-container w3-content w3-center w3-row" style="max-width: 800px">
-		<div class="w3-third"><a href="${position}" class="w3-btn-block w3-round w3-teal">Find guides by position</a></div>
-		<div class="w3-third w3-right"><a href="${available}" class="w3-btn-block w3-round w3-teal ">Find available guides</a></div>
 	</div>
 	<br />
 		

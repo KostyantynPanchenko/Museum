@@ -33,8 +33,8 @@
 		</div>
 		
 		<div class="w3-container w3-content w3-center w3-row" style="max-width: 800px">
-			<div class="w3-third"><a href="${position}" class="w3-btn-block w3-round w3-teal">Find guides by position</a></div>
-			<div class="w3-third w3-right"><a href="${available}" class="w3-btn-block w3-round w3-teal ">Find available guides</a></div>
+			<div class="w3-third"><a href="${position}" class="w3-btn-block w3-black">Find guides by position</a></div>
+			<div class="w3-third w3-right"><a href="${available}" class="w3-btn-block w3-black">Find available guides</a></div>
 		</div>
 		<br />
 	</div>		

@@ -40,8 +40,8 @@
 		<div class="w3-container w3-content w3-center" style="max-width: 800px" >
 			<h3 class="w3-wide"><spring:message code="menu.tours" /></h3>
 			<div class="w3-container w3-content w3-center" style="max-width: 200px">
-				<p><a href="${tours}" class="w3-btn-block w3-round w3-teal">Available tours</a></p>
-				<p><a href="${slot}" class="w3-btn-block w3-round w3-teal">From .. to ..</a></p>
+				<p><a href="${tours}" class="w3-btn-block w3-black">Available tours</a></p>
+				<p><a href="${slot}" class="w3-btn-block w3-black">From .. to ..</a></p>
 			</div>			
 		</div>
 	</div>

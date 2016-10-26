@@ -49,9 +49,8 @@
 		<div class="w3-container w3-content w3-center" style="max-width: 800px" >
 			<h3 class="w3-wide"><spring:message code="menu.tours" /></h3>
 			<div class="w3-container w3-content w3-center" style="max-width: 200px">
-				<p><a href="${tours}" class="w3-btn-block w3-round w3-teal">Available tours</a></p>
-				<p><a href="${all}" class="w3-btn-block w3-round w3-teal">Weekly schedule</a></p>
-				<!--p><a href="${from}" class="w3-btn-block w3-round w3-teal">All after...</a></p-->
+				<p><a href="${tours}" class="w3-btn-block w3-black">Available tours</a></p>
+				<p><a href="${all}" class="w3-btn-block w3-black">Weekly schedule</a></p>
 			</div>			
 		</div>
 	</div>

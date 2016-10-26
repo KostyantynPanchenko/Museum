@@ -42,10 +42,10 @@
 				</c:otherwise>	
 			</c:choose>
 			<div class="w3-container w3-content w3-center w3-padding-32" style="max-width: 200px">
-				<p><a href="${all}" class="w3-btn-block w3-round w3-teal">List all exhibits</a></p>
-				<p><a href="${byAuthor}" class="w3-btn-block w3-round w3-teal">By author</a></p>
-				<p><a href="${byMaterial}" class="w3-btn-block w3-round w3-teal">By material</a></p>
-				<p><a href="${byTechnique}" class="w3-btn-block w3-round w3-teal">By technique</a></p>
+				<p><a href="${all}" class="w3-btn-block w3-black">List all exhibits</a></p>
+				<p><a href="${byAuthor}" class="w3-btn-block w3-black">By author</a></p>
+				<p><a href="${byMaterial}" class="w3-btn-block w3-black">By material</a></p>
+				<p><a href="${byTechnique}" class="w3-btn-block w3-black">By technique</a></p>
 			</div>		
 		</div>
 	</div>
