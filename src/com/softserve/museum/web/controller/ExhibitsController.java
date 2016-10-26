@@ -9,6 +9,7 @@
 
 package com.softserve.museum.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.softserve.museum.domain.Exhibit;
+import com.softserve.museum.domain.Material;
+import com.softserve.museum.domain.Technique;
 import com.softserve.museum.service.ExhibitService;
+import com.softserve.museum.service.MaterialService;
+import com.softserve.museum.service.TechniqueService;
 
 /**
  * 
@@ -38,6 +43,12 @@ public class ExhibitsController {
       
     @Autowired
     private ExhibitService exhibitService;
+    
+    @Autowired
+    private TechniqueService techniqueService;
+    
+    @Autowired
+    private MaterialService materialService;
     
     @GetMapping()
     public String onExhibits() {        
@@ -82,28 +93,33 @@ public class ExhibitsController {
     }
     
     @GetMapping("/material")
-    public String byMaterialGet() {        
-        return "exhibits/exhibitsByMaterial";
+    public ModelAndView byMaterialGet() {
+        ModelAndView model = new ModelAndView("exhibits/exhibitsByMaterial");
+        List<Material> materials = materialService.listMaterials();
+        model.addObject("materials", materials);
+        return model;
     }
     
     @PostMapping("/material")
-    public ModelAndView byMaterialPost(@RequestParam("material") String material) {
+    public ModelAndView byMaterialPost(@RequestParam("chosenMaterials") String[] chosenMaterials) {
         ModelAndView model = new ModelAndView("exhibits/exhibitsByMaterialResults");
-        model.addObject("material", material);
+        List<Exhibit> exhibits  = new ArrayList<>();
         
-        List<Exhibit> exhibits = exhibitService.findExhibitByMaterial(material);
-        
-        if (exhibits == null) {
-            return model;
-        }
+        for (String m: chosenMaterials){
+            List<Exhibit> list = exhibitService.findExhibitByMaterial(m);            
+            exhibits.addAll(list);
+        }        
         
         model.addObject("exhibits", exhibits);
         return model;
     }
     
     @GetMapping("/technique")
-    public String byTechniqueGet() {        
-        return "exhibits/exhibitsByTechnique";
+    public ModelAndView byTechniqueGet() { 
+        ModelAndView model = new ModelAndView("exhibits/exhibitsByTechnique");
+        List<Technique> techniques = techniqueService.listTechniques();
+        model.addObject("techniques", techniques);
+        return model;
     }
     
     @PostMapping("/technique")

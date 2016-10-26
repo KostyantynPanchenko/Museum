@@ -24,12 +24,13 @@
 				<c:when test="${not empty exhibits}">
 				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
 					<thead>
-					<tr class="w3-light-grey"><th>Author</th><th>Name</th><th>Technique</th><th>Hall</th></tr>
+					<tr class="w3-light-grey"><th>Author</th><th>Name</th><th>Material</th><th>Technique</th><th>Hall</th></tr>
 					</thead>
 					<c:forEach items="${exhibits}" var="current">
 						<tr>
 							<td>${current.author.name}</td>
 							<td>${current.name}</td>
+							<td>${current.material.description}</td>
 							<td>${current.technique.description}</td>
 							<td>${current.hall}</td>
 						</tr>

@@ -13,15 +13,19 @@
 
 	<!-- Page content -->
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64"
-			style="max-width: 800px" >
-			<h2 class="w3-wide">Enter technique:</h2>
-			
+		<div class="w3-container w3-content w3-center w3-padding-64" style="max-width: 800px" >
+			<h2 class="w3-wide">Choose technique:</h2>
+			<div class="w3-container w3-content w3-center" style="max-width: 340px" >	
 			<form method="post" action="${byTechnique}">
-				<p><input type="text" value="" name="technique" class="w3-input w3-border" /></p>
+				<select name="technique" class="w3-input w3-border">
+				<c:forEach items="${techniques}" var="current">
+					<option value="${current.description}">${current.description}</option>					
+				</c:forEach>
+				</select>
+				<!--p><input type="text" value="" name="technique" class="w3-input w3-border" /></p-->
 				<p><input type="submit" class="w3-btn w3-blue"/></p>
 			</form>			
-			
+			</div>
 		</div>
 	</div>
 		
