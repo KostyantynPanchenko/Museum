@@ -56,5 +56,9 @@ public class Author {
     public final void setName(String name) {
         this.name = name;
     }
+    @Override
+    public String toString() {
+        return "Author [id=" + id + ", " + "name=" + name + "]";
+    }
 
 }

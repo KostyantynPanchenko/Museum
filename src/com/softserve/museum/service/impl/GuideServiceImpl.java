@@ -46,6 +46,9 @@ public class GuideServiceImpl implements GuideService {
     }
 
     @Override
+    public List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end) {
+        return guides.findGuideByTime(start, end);
+    }
     public List<Guide> findByTime(Time start, Time end) {
         return guides.findByTime(start, end);
     }
@@ -70,13 +73,15 @@ public class GuideServiceImpl implements GuideService {
         return gList;
     }
 
-    @Override
-    public List<Guide> getCountGuidesByPeriod(Time start, Time end) {
+    @SuppressWarnings("rawtypes")
+	@Override
+    public List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end) {
         return guides.getCountGuidesByPeriod(start, end);
     }
 
-    @Override
-    public List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end) {
+    @SuppressWarnings("rawtypes")
+	@Override
+    public List getCountTotalTimePerGuideByPeriod(LocalDateTime start, LocalDateTime end) {
         return guides.getCountTotalTimePerGuideByPeriod(start, end);
     }
 
@@ -115,5 +120,6 @@ public class GuideServiceImpl implements GuideService {
         
         return guides.findByPosition(thePosition);         
     }
+
 
 }

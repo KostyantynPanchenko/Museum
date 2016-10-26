@@ -29,56 +29,63 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "guides")
 public class Guide {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    
-    @Column(name = "first_name")
-    private String firstName;
-    
-    @Column(name = "last_name")
-    private String lastName;
-    
-    @Enumerated(EnumType.STRING)
-    private Position position;
-    
-    /**
-     * Default no-args constructor
-     */
-    public Guide() { }
 
-    public final int getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    public final void setId(int id) {
-        this.id = id;
-    }
+	@Column(name = "first_name")
+	private String firstName;
 
-    public final String getFirstName() {
-        return firstName;
-    }
+	@Column(name = "last_name")
+	private String lastName;
 
-    public final void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	@Enumerated(EnumType.STRING)
+	private Position position;
 
-    public final String getLastName() {
-        return lastName;
-    }
+	/**
+	 * Default no-args constructor
+	 */
+	public Guide() {
+	}
 
-    public final void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public final int getId() {
+		return id;
+	}
 
-    public final Position getPosition() {
-        return position;
-    }
+	public final void setId(int id) {
+		this.id = id;
+	}
 
-    public final void setPosition(Position position) {
-        this.position = position;
-    }
+	public final String getFirstName() {
+		return firstName;
+	}
+
+	public final void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public final String getLastName() {
+		return lastName;
+	}
+
+	public final void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public final Position getPosition() {
+		return position;
+	}
+
+	public final void setPosition(Position position) {
+		this.position = position;
+	}
+
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", " + "First Name=" + firstName + ", " + 
+				"Larst Name=" + lastName + ", " + "Position=" + position + "]";
+	}
 
     @Override
     public int hashCode() {
