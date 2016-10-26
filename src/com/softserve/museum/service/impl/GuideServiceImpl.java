@@ -8,7 +8,7 @@
  */
 package com.softserve.museum.service.impl;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,17 +39,19 @@ public class GuideServiceImpl implements GuideService {
     }
 
     @Override
-    public List<Guide> findGuideByTime(Time start, Time end) {
+    public List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end) {
         return guides.findGuideByTime(start, end);
     }
 
-    @Override
-    public List<Guide> getCountGuidesByPeriod(Time start, Time end) {
+    @SuppressWarnings("rawtypes")
+	@Override
+    public List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end) {
         return guides.getCountGuidesByPeriod(start, end);
     }
 
-    @Override
-    public List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end) {
+    @SuppressWarnings("rawtypes")
+	@Override
+    public List getCountTotalTimePerGuideByPeriod(LocalDateTime start, LocalDateTime end) {
         return guides.getCountTotalTimePerGuideByPeriod(start, end);
     }
 

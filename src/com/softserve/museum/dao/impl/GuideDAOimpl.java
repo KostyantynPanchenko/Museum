@@ -8,7 +8,8 @@
  */
 package com.softserve.museum.dao.impl;
 
-import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -38,28 +39,39 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Guide> findGuideByTime(Time start, Time end) {
+	public List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end) {
 		StringBuilder query = new StringBuilder(
-				"FROM guides WHERE id NOT IN (SELECT guide_id FROM excursions AS XS WHERE (XS.start BETWEEN '");
-		query.append(start.toString() + "' AND '");
-		query.append(end.toString() + "') OR (XS.end BETWEEN '");
-		query.append(start.toString() + "' AND '");
-		query.append(end.toString() + "'))");
+				"FROM Guide WHERE id NOT IN (SELECT guide FROM Excursion AS XS WHERE (XS.start BETWEEN "
+						+ ":startDate AND :endDate) OR (XS.end BETWEEN :startDate AND :endDate))");
 		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
+		result.setTimestamp("startDate", Timestamp.valueOf(start));
+		result.setTimestamp("endDate", Timestamp.valueOf(end));
 
 		return result.list();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Guide> getCountGuidesByPeriod(Time start, Time end) {
-		// TODO Auto-generated method stub
-		return null;
+	public List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end) {
+		StringBuilder query = new StringBuilder(
+				"SELECT gd.id, gd.firstName, gd.lastName, gd.position, COUNT(gd) AS cnt FROM Excursion AS XS RIGHT JOIN XS.guide AS gd "
+						+ "WHERE (XS.start >= :startDate AND XS.end <= :endDate) " + "GROUP BY gd");
+		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
+		result.setTimestamp("startDate", Timestamp.valueOf(start));
+		result.setTimestamp("endDate", Timestamp.valueOf(end));
+		return result.list();
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end) {
-		// TODO Auto-generated method stub
-		return null;
+	public List getCountTotalTimePerGuideByPeriod(LocalDateTime start, LocalDateTime end) {
+		StringBuilder query = new StringBuilder(
+				"SELECT gd.id, gd.firstName, gd.lastName, gd.position, SEC_TO_TIME(SUM(timestampdiff(SECOND, XS.start, XS.end))) AS totalduration FROM Excursion AS XS RIGHT JOIN XS.guide AS gd "
+						+ "WHERE (XS.start >= :startDate AND XS.end <= :endDate) " + "GROUP BY gd");
+		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
+		result.setTimestamp("startDate", Timestamp.valueOf(start));
+		result.setTimestamp("endDate", Timestamp.valueOf(end));
+		return result.list();
 	}
 
 }
