@@ -9,8 +9,6 @@
 
 package com.softserve.museum.web.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,12 +70,8 @@ public class ExcursionsController {
         end = end.replace('T', ' ');
         model.addObject("start", start);
         model.addObject("end", end);
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime startTime = LocalDateTime.parse(start, formatter);
-        LocalDateTime endTime = LocalDateTime.parse(end, formatter);
                 
-        List<Excursion> excursions = excursionService.findByTimeSlot(startTime, endTime);
+        List<Excursion> excursions = excursionService.findByTimeSlot(start, end);
         model.addObject("excursions", excursions);
         return model;
   }  

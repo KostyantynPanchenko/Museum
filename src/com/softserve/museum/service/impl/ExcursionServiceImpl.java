@@ -9,6 +9,7 @@
 package com.softserve.museum.service.impl;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,14 @@ public class ExcursionServiceImpl implements ExcursionService {
     @Override
     public List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end) {
         return excursions.findByTimeSlot(start, end);
+    }
+
+    @Override
+    public List<Excursion> findByTimeSlot(String start, String end) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startTime = LocalDateTime.parse(start, formatter);
+        LocalDateTime endTime = LocalDateTime.parse(end, formatter);
+        return excursions.findByTimeSlot(startTime, endTime);
     }
 
     @Override

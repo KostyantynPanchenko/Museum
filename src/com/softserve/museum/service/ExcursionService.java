@@ -35,6 +35,8 @@ public interface ExcursionService {
     
     public abstract List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end);
     
+    public abstract List<Excursion> findByTimeSlot(String start, String end);
+    
     public abstract List<Excursion> findByStart(LocalDateTime start);
     
     public abstract List<Excursion> findByEnd(LocalDateTime end);

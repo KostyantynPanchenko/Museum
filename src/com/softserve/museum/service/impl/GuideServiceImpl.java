@@ -9,6 +9,7 @@
 package com.softserve.museum.service.impl;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,16 @@ public class GuideServiceImpl implements GuideService {
         }
         return gList;
     }
+    
+
+    @Override
+    public List<Guide> findByTime(String start, String end) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startTime = LocalDateTime.parse(start, formatter);
+        LocalDateTime endTime = LocalDateTime.parse(end, formatter);
+        
+        return findByTime(startTime, endTime);
+    }
 
     @SuppressWarnings("rawtypes")
 	@Override
@@ -111,6 +122,5 @@ public class GuideServiceImpl implements GuideService {
         
         return guides.findByPosition(thePosition);         
     }
-
 
 }

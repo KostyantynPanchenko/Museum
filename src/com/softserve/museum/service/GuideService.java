@@ -32,7 +32,9 @@ public interface GuideService {
 
 	public abstract List<Guide> listGuides();
 
-	public abstract List<Guide> findByTime(LocalDateTime start, LocalDateTime end);
+	public abstract List<Guide> findByTime(LocalDateTime start, LocalDateTime end);	
+
+    public abstract List<Guide> findByTime(String start, String end);
 	
 	@SuppressWarnings("rawtypes")
 	public abstract List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end);
