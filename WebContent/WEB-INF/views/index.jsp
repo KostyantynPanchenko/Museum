@@ -55,23 +55,10 @@
 
 		<!-- The Tours Section -->
 		<div class="w3-black" id="tour">
-			<div class="w3-container w3-content w3-padding-64"
-				style="max-width: 800px">
-				<h2 class="w3-wide w3-center">MUSEUM OPERATION DATES</h2>
-				<p class="w3-opacity w3-center">
-					<i>Remember to book your tickets!</i>
-				</p>
-				<br>
-
-				<ul class="w3-ul w3-border w3-white w3-text-grey">
-					<li class="w3-padding">October <span
-						class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-					<li class="w3-padding">November <span
-						class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-					<li class="w3-padding">December <span
-						class="w3-badge w3-right w3-margin-right">3</span></li>
-				</ul>
-				
+			<div class="w3-container w3-content w3-padding-128" style="max-width: 800px">
+				<h2 class="w3-wide w3-center">MUSEUM OPERATION HOURS</h2>
+				<p><h3 class="w3-center"><i>Monday thru Sunday</i></h3>
+				<h3 class="w3-center">10:00 till 20:00</h3>					
 			</div>
 		</div>
 

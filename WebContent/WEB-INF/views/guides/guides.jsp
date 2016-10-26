@@ -13,7 +13,7 @@
 	<jsp:include page="../menu.jsp"></jsp:include>	
 
 	<!-- Page content -->		
-	<div class="w3-container w3-content w3-center w3-padding-64 w3-card-8" style="max-width: 800px; margin-top: 100px" >
+	<div class="w3-container w3-content w3-center w3-padding-64 w3-card-8" style="max-width: 800px; margin-top: 100px; margin-bottom: 100px" >
 		<h2 class="w3-wide"><spring:message code="menu.guides" /></h2>
 		<c:if test="${not empty guides}">
 			<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">

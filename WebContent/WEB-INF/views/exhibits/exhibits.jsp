@@ -5,9 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <spring:url value="/exhibits/all" var="all" />
-<spring:url value="/exhibits/byAuthor" var="byAuthor" />
-<spring:url value="/exhibits/byMaterial" var="byMaterial" />
-<spring:url value="/exhibits/byTechnique" var="byTechnique" />
+<spring:url value="/exhibits/author" var="byAuthor" />
+<spring:url value="/exhibits/material" var="byMaterial" />
+<spring:url value="/exhibits/technique" var="byTechnique" />
 
 <html>
 	<jsp:include page="../head.jsp"></jsp:include>

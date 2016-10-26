@@ -14,6 +14,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,13 +52,22 @@ public class ExhibitsController {
         return model;
     }
     
-    @GetMapping("/byAuthor")
+    @GetMapping("/author")
     public String byAuthorGet() {
         return "exhibits/exhibitsByAuthor";
     }
     
-    @PostMapping("/byAuthor")
+    @GetMapping("/author/{author}")
+    public ModelAndView byAuthorName(@PathVariable("author") String author) {        
+        return getExhibitsByAuthor(author);
+    }
+    
+    @PostMapping("/author")
     public ModelAndView byAuthorPost(@RequestParam("authorName") String author) {
+        return getExhibitsByAuthor(author);
+    }
+    
+    private ModelAndView getExhibitsByAuthor(String author) {
         ModelAndView model = new ModelAndView("exhibits/exhibitsByAuthorResults");
         model.addObject("author", author);
         
@@ -71,12 +81,12 @@ public class ExhibitsController {
         return model;
     }
     
-    @GetMapping("/byMaterial")
+    @GetMapping("/material")
     public String byMaterialGet() {        
         return "exhibits/exhibitsByMaterial";
     }
     
-    @PostMapping("/byMaterial")
+    @PostMapping("/material")
     public ModelAndView byMaterialPost(@RequestParam("material") String material) {
         ModelAndView model = new ModelAndView("exhibits/exhibitsByMaterialResults");
         model.addObject("material", material);
@@ -91,12 +101,12 @@ public class ExhibitsController {
         return model;
     }
     
-    @GetMapping("/byTechnique")
+    @GetMapping("/technique")
     public String byTechniqueGet() {        
         return "exhibits/exhibitsByTechnique";
     }
     
-    @PostMapping("/byTechnique")
+    @PostMapping("/technique")
     public ModelAndView byTechniquePost(@RequestParam("technique") String technique) {
         ModelAndView model = new ModelAndView("exhibits/exhibitsByTechniqueResults");
         model.addObject("technique", technique);

@@ -4,9 +4,9 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:url value="/exhibits/byAuthor" var="byAuthor" />
-<spring:url value="/exhibits/byMaterial" var="byMaterial" />
-<spring:url value="/exhibits/byTechnique" var="byTechnique" />
+<spring:url value="/exhibits/author" var="byAuthor" />
+<spring:url value="/exhibits/material" var="byMaterial" />
+<spring:url value="/exhibits/technique" var="byTechnique" />
 
 <html>
 	<jsp:include page="../head.jsp"></jsp:include>
@@ -24,7 +24,7 @@
 				<c:forEach items="${exhibits}" var="current">
 					<tr>
 						<td>${current.name}</td>
-						<td>${current.author.name}</td>
+						<td><a href="${byAuthor}/${current.author.name}" style="text-decoration: none">${current.author.name}</a></td>
 						<td>${current.material.description}</td>
 						<td>${current.technique.description}</td>
 						<td>${current.hall}</td>

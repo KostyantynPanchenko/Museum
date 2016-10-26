@@ -4,7 +4,7 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:url value="/exhibits/byAuthor" var="byAuthor" />
+<spring:url value="/exhibits/author" var="byAuthor" />
 
 <html>
 	<jsp:include page="../head.jsp"></jsp:include>
