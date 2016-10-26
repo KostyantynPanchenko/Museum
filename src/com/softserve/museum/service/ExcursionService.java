@@ -12,6 +12,7 @@ import java.sql.Time;
 import java.util.List;
 
 import com.softserve.museum.domain.Excursion;
+import com.softserve.museum.domain.ExcursionDetails;
 
 /**
  * 
@@ -30,11 +31,13 @@ public interface ExcursionService {
     
     public abstract void delete(Excursion excursion);
     
-    public abstract List<Excursion> listExcursions();
+    public abstract List<ExcursionDetails> listExcursions();
     
     public abstract List<Excursion> findExcursionByTime(Time start, Time end);
     
     public abstract List<Excursion> findExcursionByStart(Time start);
     
     public abstract List<Excursion> findExcursionByEnd(Time end);
+
+    public abstract List<Excursion> listSchedule();
 }

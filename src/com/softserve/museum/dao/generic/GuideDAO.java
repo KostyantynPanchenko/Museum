@@ -8,10 +8,12 @@
  */
 package com.softserve.museum.dao.generic;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import com.softserve.museum.domain.Guide;
+import com.softserve.museum.domain.Position;
 
 /**
  * 
@@ -26,11 +28,15 @@ public interface GuideDAO extends GenericDAO<Guide, Integer> {
 
     public abstract List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end);
 
+	public abstract List<Guide> findByTime(Time start, Time end);
+
     @SuppressWarnings("rawtypes")
 	public abstract List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end);
 
     @SuppressWarnings("rawtypes")
 	public abstract List getCountTotalTimePerGuideByPeriod(LocalDateTime start,
     		LocalDateTime end);
+
+    public abstract List<Guide> findByPosition(Position thePosition);
 
 }

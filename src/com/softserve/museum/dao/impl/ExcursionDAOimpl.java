@@ -9,12 +9,14 @@
 package com.softserve.museum.dao.impl;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Expression;
+import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.ExcursionDAO;
@@ -29,7 +31,6 @@ import com.softserve.museum.domain.Excursion;
  * @since 19.10.2016
  *
  */
-@SuppressWarnings("deprecation")
 @Repository
 @Transactional
 public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
@@ -43,8 +44,8 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
     @Override
     public List<Excursion> findExcursionByTime(Time start, Time end) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Excursion.class);
-		criteria.add(Expression.ge("start", start));
-		criteria.add(Expression.le("start", start));
+		criteria.add(Restrictions.ge("start", start));
+		criteria.add(Restrictions.le("start", start));
 		return criteria.list();
     }
 
@@ -52,6 +53,17 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
     public List<Excursion> findExcursionByStart(Time start) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Excursion> findInPeriod(LocalDateTime start, LocalDateTime end) {
+        String str = "select ex from Excursion ex "
+                + "where (ex.start >= :st and ex.start <= :ending) "
+                + "or (ex.end >= :st and ex.end <= :ending)";
+        Query query = sessionFactory.getCurrentSession().createQuery(str);
+        query.setParameter("st", start).setParameter("ending", end);
+        return query.list();
     }
 
 }

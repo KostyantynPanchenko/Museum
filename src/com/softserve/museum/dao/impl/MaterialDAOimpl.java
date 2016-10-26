@@ -8,8 +8,12 @@
  */
 package com.softserve.museum.dao.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.MaterialDAO;
@@ -30,6 +34,14 @@ public class MaterialDAOimpl extends AbstractDAO<Material, Integer> implements M
 
     public MaterialDAOimpl() {
         super(Material.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Material> findMaterialByName(String material) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Material.class);
+        criteria.add(Restrictions.eq("description", material));
+        return criteria.list();
     }
 
 }

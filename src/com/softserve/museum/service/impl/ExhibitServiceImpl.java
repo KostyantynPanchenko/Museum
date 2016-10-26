@@ -13,7 +13,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.softserve.museum.dao.generic.AuthorDAO;
 import com.softserve.museum.dao.generic.ExhibitDAO;
+import com.softserve.museum.dao.generic.MaterialDAO;
+import com.softserve.museum.dao.generic.TechniqueDAO;
 import com.softserve.museum.domain.Author;
 import com.softserve.museum.domain.Exhibit;
 import com.softserve.museum.domain.Material;
@@ -35,6 +38,15 @@ public class ExhibitServiceImpl implements ExhibitService {
     @Autowired
     private ExhibitDAO exhibits;
     
+    @Autowired
+    private AuthorDAO authors;
+    
+    @Autowired
+    private MaterialDAO materials;
+    
+    @Autowired
+    private TechniqueDAO techniques;
+    
     @Override
     public List<Exhibit> listExhibits() {
         return exhibits.getAll();
@@ -44,6 +56,15 @@ public class ExhibitServiceImpl implements ExhibitService {
     public List<Exhibit> findExhibitByAuthor(Author author) {
         return exhibits.findExhibitByAuthor(author);
     }
+    
+    @Override
+    public List<Exhibit> findExhibitByAuthor(String author) {
+        List<Author> list = authors.findAuthorByName(author);
+        if (list == null || list.size() < 1) {
+            return null;
+        }
+        return exhibits.findExhibitByAuthor(list.get(0));
+    }
 
     @Override
     public List<Exhibit> findExhibitByMaterial(Material material) {
@@ -51,10 +72,28 @@ public class ExhibitServiceImpl implements ExhibitService {
     }
 
     @Override
+    public List<Exhibit> findExhibitByMaterial(String material) {
+        List<Material> list = materials.findMaterialByName(material);
+        if (list == null || list.size() < 1) {
+            return null;
+        }
+        return exhibits.findExhibitByMaterial(list.get(0));
+    }
+
+    @Override
     public List<Exhibit> findExhibitByTechnique(Technique technique) {
         return exhibits.findExhibitByTechnique(technique);
     }
 
+    @Override
+    public List<Exhibit> findExhibitByTechniquel(String technique) {
+        List<Technique> list = techniques.findTechniqueByName(technique);
+        if (list == null || list.size() < 1) {
+            return null;
+        }
+        return exhibits.findExhibitByTechnique(list.get(0));
+    }
+    
     @Override
     public List<Exhibit> findExhibitByHall(Integer hallNumber) {
         return exhibits.findExhibitByHall(hallNumber);

@@ -36,9 +36,16 @@ public interface ExhibitService {
     
     public abstract List<Exhibit> findExhibitByAuthor(Author author);
     
+    public abstract List<Exhibit> findExhibitByAuthor(String author);
+    
     public abstract List<Exhibit> findExhibitByMaterial(Material material);
     
+    public abstract List<Exhibit> findExhibitByMaterial(String material);
+    
     public abstract List<Exhibit> findExhibitByTechnique(Technique technique);
+
+    public abstract List<Exhibit> findExhibitByTechniquel(String technique);
     
     public abstract List<Exhibit> findExhibitByHall(Integer hallNumber);
+    
 }

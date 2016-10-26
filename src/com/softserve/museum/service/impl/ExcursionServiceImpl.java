@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.softserve.museum.dao.generic.ExcursionDAO;
+import com.softserve.museum.dao.generic.ExcursionDetailsDAO;
 import com.softserve.museum.domain.Excursion;
+import com.softserve.museum.domain.ExcursionDetails;
 import com.softserve.museum.service.ExcursionService;
 
 /**
@@ -33,9 +35,12 @@ public class ExcursionServiceImpl implements ExcursionService {
     @Autowired
     private ExcursionDAO excursions;
     
+    @Autowired
+    private ExcursionDetailsDAO details;
+    
     @Override
-    public List<Excursion> listExcursions() {
-        return excursions.getAll();
+    public List<ExcursionDetails> listExcursions() {
+        return details.getAll();
     }
 
     @Override
@@ -66,6 +71,11 @@ public class ExcursionServiceImpl implements ExcursionService {
     @Override
     public void delete(Excursion excursion) {
         excursions.delete(excursion);
+    }
+
+    @Override
+    public List<Excursion> listSchedule() {        
+        return excursions.getAll();
     }
 
 }

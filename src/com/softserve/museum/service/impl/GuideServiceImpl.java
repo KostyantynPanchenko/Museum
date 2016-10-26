@@ -8,14 +8,18 @@
  */
 package com.softserve.museum.service.impl;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.softserve.museum.dao.generic.ExcursionDAO;
 import com.softserve.museum.dao.generic.GuideDAO;
+import com.softserve.museum.domain.Excursion;
 import com.softserve.museum.domain.Guide;
+import com.softserve.museum.domain.Position;
 import com.softserve.museum.service.GuideService;
 
 /**
@@ -33,6 +37,9 @@ public class GuideServiceImpl implements GuideService {
     @Autowired
     private GuideDAO guides;
     
+    @Autowired
+    private ExcursionDAO excursions;
+    
     @Override
     public List<Guide> listGuides() {
         return guides.getAll();
@@ -41,6 +48,29 @@ public class GuideServiceImpl implements GuideService {
     @Override
     public List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end) {
         return guides.findGuideByTime(start, end);
+    }
+    public List<Guide> findByTime(Time start, Time end) {
+        return guides.findByTime(start, end);
+    }
+    
+    @Override
+    public List<Guide> findByTime(LocalDateTime start,
+            LocalDateTime end) {
+        List<Excursion> eList = excursions.findInPeriod(start, end);
+        
+        for (Excursion e: eList) {
+            System.out.println(e);
+        }
+        
+        List<Guide> gList = guides.getAll();
+        for (Guide g: gList) {
+            System.out.println(g.getFirstName());
+        }
+        
+        for (Excursion e: eList) {
+            gList.remove(e.getGuide());
+        }
+        return gList;
     }
 
     @SuppressWarnings("rawtypes")
@@ -69,5 +99,27 @@ public class GuideServiceImpl implements GuideService {
     public void delete(Guide guiden) {
         guides.delete(guiden);
     }
+
+    @Override
+    public List<Guide> findByPosition(String position) {
+        Position thePosition;
+        
+        switch (position.trim().toUpperCase()) {
+        case "MANAGER":
+            thePosition = Position.MANAGER;
+            break;
+        case "GUIDE":
+            thePosition = Position.GUIDE;
+            break;
+        case "CHIEF GUIDE":
+            thePosition = Position.CHIEF_GUIDE;
+            break;
+        default:
+            return null;
+        }
+        
+        return guides.findByPosition(thePosition);         
+    }
+
 
 }

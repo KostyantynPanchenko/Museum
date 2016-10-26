@@ -8,17 +8,21 @@
  */
 package com.softserve.museum.dao.impl;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.GuideDAO;
 import com.softserve.museum.domain.Guide;
+import com.softserve.museum.domain.Position;
 
 /**
  * 
@@ -39,6 +43,7 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 
 	@SuppressWarnings("unchecked")
 	@Override
+
 	public List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end) {
 		StringBuilder query = new StringBuilder(
 				"FROM Guide WHERE id NOT IN (SELECT guide FROM Excursion AS XS WHERE (XS.start BETWEEN "
@@ -74,4 +79,25 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		return result.list();
 	}
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Guide> findByPosition(Position thePosition) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Guide.class);
+        criteria.add(Restrictions.eq("position", thePosition));
+        return criteria.list();
+    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Guide> findByTime(Time start, Time end) {
+		StringBuilder query = new StringBuilder(
+				"FROM guides WHERE id NOT IN (SELECT guide_id FROM excursions AS XS WHERE (XS.start BETWEEN '");
+		query.append(start.toString() + "' AND '");
+		query.append(end.toString() + "') OR (XS.end BETWEEN '");
+		query.append(start.toString() + "' AND '");
+		query.append(end.toString() + "'))");
+		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
+
+		return result.list();
+	}    
+ 
 }

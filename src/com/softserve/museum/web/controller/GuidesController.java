@@ -40,6 +40,22 @@ public class GuidesController {
     @Autowired
     private GuideService guideService;
     
+    @GetMapping
+    public ModelAndView onGuides() {
+        ModelAndView model = new ModelAndView("guides/guides");
+        List<Guide> guides = guideService.listGuides();
+        model.addObject("guides", guides);
+        return model;
+    }
+    
+    @GetMapping("/all")
+    public ModelAndView all() {
+        ModelAndView model = new ModelAndView("guides/guides");
+        List<Guide> guides = guideService.listGuides();
+        model.addObject("guides", guides);
+        return model;
+    }
+    
     @GetMapping("/available")
     public ModelAndView onAvailable() {
         ModelAndView model = new ModelAndView("guides/guidesAvailable");
@@ -49,15 +65,38 @@ public class GuidesController {
     }
     
     @PostMapping("/available")
-    public ModelAndView findAvailable(@RequestParam(name="start") String input) {
-        String str = input.replace('T', ' ');
-        System.out.println(str);
+    public ModelAndView findAvailable(
+            @RequestParam(name="start") String start, 
+            @RequestParam(name="end") String end) {
+        
+        ModelAndView model = new ModelAndView("guides/guidesAvailableResults");
+        start = start.replace('T', ' ');
+        end = end.replace('T', ' ');
+        model.addObject("start", start);
+        model.addObject("end", end);
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime start = LocalDateTime.parse(str, formatter);
-        System.out.println(start);
-        ModelAndView model = new ModelAndView("guides/guidesAvailable");
-        List<Guide> guides = guideService.listGuides();
+        LocalDateTime startTime = LocalDateTime.parse(start, formatter);
+        LocalDateTime endTime = LocalDateTime.parse(end, formatter);
+                
+        List<Guide> guides = guideService.findByTime(startTime, endTime);
         model.addObject("guides", guides);
         return model;
-    }  
+    }
+    
+    @GetMapping("/position")
+    public String onPosition() {
+        return "guides/guidesByPosition";
+    }
+    
+    @PostMapping("/position")
+    public ModelAndView onPosition(@RequestParam(name="position") String position) {
+        ModelAndView model = new ModelAndView("guides/guidesByPositionResults");
+        model.addObject("position", position);
+        
+        List<Guide> guides = guideService.findByPosition(position);
+        
+        model.addObject("guides", guides);
+        return model;
+    }
 }

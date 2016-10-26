@@ -87,4 +87,44 @@ public class Guide {
 				"Larst Name=" + lastName + ", " + "Position=" + position + "]";
 	}
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result
+                + ((firstName == null) ? 0 : firstName.hashCode());
+        result = prime * result + id;
+        result = prime * result
+                + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result
+                + ((position == null) ? 0 : position.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Guide other = (Guide) obj;
+        if (firstName == null) {
+            if (other.firstName != null)
+                return false;
+        } else if (!firstName.equals(other.firstName))
+            return false;
+        if (id != other.id)
+            return false;
+        if (lastName == null) {
+            if (other.lastName != null)
+                return false;
+        } else if (!lastName.equals(other.lastName))
+            return false;
+        if (position != other.position)
+            return false;
+        return true;
+    }
+
 }

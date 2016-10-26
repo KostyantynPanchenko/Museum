@@ -23,20 +23,28 @@ import com.softserve.museum.domain.Guide;
  *
  */
 public interface GuideService {
-    
-    public abstract Integer save(Guide guide);
-    
-    public abstract Guide update(Guide guide);
-    
-    public abstract void delete(Guide guiden);
 
-    public abstract List<Guide> listGuides();
-    
-    public abstract List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end);
-    
-    @SuppressWarnings("rawtypes")
+	public abstract Integer save(Guide guide);
+
+	public abstract Guide update(Guide guide);
+
+	public abstract void delete(Guide guide);
+
+	public abstract List<Guide> listGuides();
+
+	public abstract List<Guide> findGuideByTime(LocalDateTime start, LocalDateTime end);
+	// public abstract List<Guide> findByTime(Time start, Time end);
+
+	public abstract List<Guide> findByTime(LocalDateTime startTime, LocalDateTime endTime);
+
+	@SuppressWarnings("rawtypes")
 	public abstract List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end);
-    
-    @SuppressWarnings("rawtypes")
+
+	@SuppressWarnings("rawtypes")
 	public abstract List getCountTotalTimePerGuideByPeriod(LocalDateTime start, LocalDateTime end);
+
+//	public abstract List<Guide> getCountTotalTimePerGuideByPeriod(Time start, Time end);
+
+	public abstract List<Guide> findByPosition(String position);
+
 }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.softserve.museum.domain.Author;
-import com.softserve.museum.domain.Excursion;
+import com.softserve.museum.domain.ExcursionDetails;
 import com.softserve.museum.domain.Exhibit;
 import com.softserve.museum.domain.Guide;
 import com.softserve.museum.service.ExcursionService;
@@ -61,7 +61,7 @@ public class CoreController {
 	@GetMapping("tours")
 	public ModelAndView onTours() {
 		ModelAndView model = new ModelAndView("excursions/excursions");
-		List<Excursion> excursions = excursionService.listExcursions();
+		List<ExcursionDetails> excursions = excursionService.listExcursions();
 		model.addObject("excursions", excursions);
 		return model;
 	}
@@ -93,8 +93,8 @@ public class CoreController {
 
 	private void testExcursions() {
 		System.out.println(" ++++++++++++++++  HIBERNATE  ++++++++++++++++");
-		List<Excursion> exs = excursionService.listExcursions();
-		for (Excursion ex : exs) {
+		List<ExcursionDetails> exs = excursionService.listExcursions();
+		for (ExcursionDetails ex : exs) {
 			System.out.println(ex);
 		}
 		System.out.println(" ++++++++++++++++ END OF TEST ++++++++++++++++");
@@ -151,4 +151,11 @@ public class CoreController {
 		// }
 		System.out.println(" ++++++++++++++++ END OF TEST ++++++++++++++++");
 	}
+    
+/*    @GetMapping("/")
+    public ModelAndView onIndex() {
+        ModelAndView model = new ModelAndView("index");
+        return model;
+    }
+*/
 }
