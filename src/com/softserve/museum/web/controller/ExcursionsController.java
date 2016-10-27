@@ -34,27 +34,46 @@ import com.softserve.museum.service.ExcursionService;
 @Controller
 @RequestMapping(path = "/tours")
 public class ExcursionsController {
-      
+    
+    /** ExcursionService instance */
     @Autowired
     private ExcursionService excursionService;
     
+    /**
+     * Handles request to show all excursions (schedule).
+     * @return model and view
+     */
     @GetMapping("/all")
     public ModelAndView all() {        
         return new ModelAndView("excursions/excursionsAll", "excursions", excursionService.listSchedule());
     }
     
+    /**
+     * Handles request to "main" tours' page.
+     * @return model and view
+     */
     @GetMapping()
     public ModelAndView onTours() {
         return new ModelAndView("excursions/excursions", "excursions", excursionService.listExcursions());
     }
     
+    /**
+     * Handles request to search for excursions in given time slot, renders search form.
+     * @return logical view name
+     */
     @GetMapping("/timeslot")
-    public String onTimeslotGet() {
+    public String showTimeSlotForm() {
         return "excursions/excursionsInSlot";
     }
     
+    /**
+     * Handles request to process searching for excursions in time slot based on given input.
+     * @param start start of time slot to search in
+     * @param end end of time slot to search in
+     * @return model and view
+     */
     @PostMapping("/timeslot")
-    public ModelAndView onTimeslotPost(
+    public ModelAndView processTimeSlotSearchForm(
             @RequestParam(name="start") String start, 
             @RequestParam(name="end") String end) {
         
