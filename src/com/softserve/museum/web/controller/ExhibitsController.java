@@ -100,7 +100,7 @@ public class ExhibitsController {
 
     @GetMapping("/technique")
     public ModelAndView byTechnique() {
-        return new ModelAndView("exhibits/exhibitsByTechnique", "techniues",
+        return new ModelAndView("exhibits/exhibitsByTechnique", "techniques",
                 techniqueService.listTechniques());
     }
 
