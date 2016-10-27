@@ -22,10 +22,11 @@
 				<p><input	class="w3-check w3-left" 
 							type="checkbox" 
 							name="chosenMaterials" 
-							value="${current.description}">
+							value="${current.description}"
+							onclick="atLeastOneMustBeChosen(this)">
 				<label class="w3-validate">${current.description}</label>		
 				</c:forEach>
-				<p><input type="submit" class="w3-btn w3-blue"/></p>
+				<p><input type="submit" class="w3-btn w3-blue" id="btn" disabled="disabled"/></p>
 			</form>			
 			</div>
 		</div>
@@ -37,5 +38,22 @@
 	</footer>
 
 </body>
+<script>
+	var chosen = 0;
+	
+	function atLeastOneMustBeChosen(element) {
+		if (element.checked) {
+			chosen++;
+			if (chosen == 1) {
+				document.getElementById("btn").disabled=false;
+			}
+		} else {
+			chosen--;
+			if (chosen == 0) {
+				document.getElementById("btn").disabled=true;
+			}
+		}		
+	}
+</script>
 </html>
 

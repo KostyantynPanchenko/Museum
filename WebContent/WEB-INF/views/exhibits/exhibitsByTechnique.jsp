@@ -22,7 +22,6 @@
 					<option value="${current.description}">${current.description}</option>					
 				</c:forEach>
 				</select>
-				<!--p><input type="text" value="" name="technique" class="w3-input w3-border" /></p-->
 				<p><input type="submit" class="w3-btn w3-blue"/></p>
 			</form>			
 			</div>

@@ -116,7 +116,9 @@ public class ExhibitsController {
      */
     @PostMapping("/material")
     public ModelAndView byMaterialPost(@RequestParam("chosenMaterials") String[] chosenMaterials) {
-        return new ModelAndView("exhibits/exhibitsByMaterialResults", 
+        return  chosenMaterials == null ?
+                null :
+                new ModelAndView("exhibits/exhibitsByMaterialResults", 
                 "exhibits", exhibitService.findExhibitByMaterials(chosenMaterials));
     }
 

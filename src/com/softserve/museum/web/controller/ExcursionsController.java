@@ -9,6 +9,7 @@
 
 package com.softserve.museum.web.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,11 +60,14 @@ public class ExcursionsController {
     
     /**
      * Handles request to search for excursions in given time slot, renders search form.
-     * @return logical view name
+     * @return model and view
      */
     @GetMapping("/timeslot")
-    public String showTimeSlotForm() {
-        return "excursions/excursionsInSlot";
+    public ModelAndView showTimeSlotForm() {
+        ModelAndView model = new ModelAndView("excursions/excursionsInSlot");
+        model.addObject("start", LocalDateTime.now());
+        model.addObject("end", LocalDateTime.now().plusHours(2));
+        return model;
     }
     
     /**
