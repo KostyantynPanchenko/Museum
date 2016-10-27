@@ -37,38 +37,13 @@ import com.softserve.museum.service.GuideService;
 @Controller
 public class CoreController {
 
-/*	@Autowired
-	private GuideService guideService;
-	@Autowired
-	private ExhibitService exhibitService;
-*/
+    /**
+     * Handles request to welcome page
+     * @return logical view name
+     */
 	@GetMapping("/")
 	public String onIndex() {
-/*		testExhibits();
-		testStatistic();
-*/
 		return "index";
 	}
 
-	/*
-	 * private void testExhibits() { System.out.println(
-	 * " ++++++++++++++++  EXHIBITS   ++++++++++++++++"); List<Exhibit> exhibits
-	 * = exhibitService.listExhibits(); for (Exhibit ex: exhibits) {
-	 * System.out.println(ex); } System.out.println(
-	 * " ++++++++++++++++ END OF TEST ++++++++++++++++"); }
-	 * 
-	 * private void testStatistic() { System.out.println(
-	 * " ++++++++++++++++  HIBERNATE  ++++++++++++++++");
-	 * 
-	 * String str = "2016-10-25 10:00:00"; DateTimeFormatter formatter =
-	 * DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); LocalDateTime start =
-	 * LocalDateTime.parse(str, formatter); str = "2016-12-25 14:00:00";
-	 * LocalDateTime end = LocalDateTime.parse(str, formatter);
-	 * System.out.println(start); System.out.println(end);
-	 * 
-	 * List<GuideStatisticDTO> guides =
-	 * guideService.getGuidesStatisticByPeriod(start, end); for
-	 * (GuideStatisticDTO gdto : guides) { System.out.println(gdto); }
-	 * System.out.println(" ++++++++++++++++ END OF TEST ++++++++++++++++"); }
-	 */
 }

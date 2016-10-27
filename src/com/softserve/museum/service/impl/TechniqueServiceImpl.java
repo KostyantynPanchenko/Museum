@@ -32,6 +32,10 @@ public class TechniqueServiceImpl implements TechniqueService {
     @Autowired
     private TechniqueDAO techniques;
     
+    /**
+     * Finds all techniques
+     * @return list <code>List&lt;Technique&gt;</code>of all techniques
+     */
     @Override
     public List<Technique> listTechniques() {       
         return techniques.getAll();

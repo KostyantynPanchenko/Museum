@@ -39,16 +39,32 @@ public class ExcursionServiceImpl implements ExcursionService {
     @Autowired
     private ExcursionDetailsDAO details;
     
+    /**
+     * Lists all excursions
+     * @return all excursions
+     */
     @Override
     public List<ExcursionDetails> listExcursions() {
         return details.getAll();
     }
 
+    /**
+     * Finds excursions which are available in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of Excursion objects 
+     */
     @Override
     public List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end) {
         return excursions.findByTimeSlot(start, end);
     }
 
+    /**
+     * Finds excursions which are available in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of Excursion objects 
+     */
     @Override
     public List<Excursion> findByTimeSlot(String start, String end) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -57,31 +73,59 @@ public class ExcursionServiceImpl implements ExcursionService {
         return excursions.findByTimeSlot(startTime, endTime);
     }
 
+    /**
+     * Finds all excursions which start after given time.
+     * @param start start of time slot
+     * @return list of Excursion objects
+     */
     @Override
     public List<Excursion> findByStart(LocalDateTime start) {
         return excursions.findByStart(start);
     }
 
+    /**
+     * Finds all excursions which start after given time.
+     * @param end end of time slot
+     * @return list of Excursion objects
+     */
     @Override
     public List<Excursion> findByEnd(LocalDateTime end) {
         return excursions.findByEnd(end);
     }
 
+    /**
+     * Makes given Excursion instance persistent.
+     * @param excursion instance to be persisted
+     * @return generated id
+     */
     @Override
     public Integer save(Excursion excursion) {
         return excursions.save(excursion);
     }
 
+    /**
+     * Updates given Excursion instance.
+     * @param excursion instance to be updated
+     * @return updated instance
+     */
     @Override
     public Excursion update(Excursion excursion) {
         return excursions.update(excursion);
     }
 
+    /**
+     * Deletes given instance.
+     * @param excursion instance to be deleted
+     */
     @Override
     public void delete(Excursion excursion) {
         excursions.delete(excursion);
     }
 
+    /**
+     * Lists all excursions
+     * @return all excursions
+     */
     @Override
     public List<Excursion> listSchedule() {        
         return excursions.getAll();

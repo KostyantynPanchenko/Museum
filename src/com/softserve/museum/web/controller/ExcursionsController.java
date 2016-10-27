@@ -9,6 +9,7 @@
 
 package com.softserve.museum.web.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,33 +35,56 @@ import com.softserve.museum.service.ExcursionService;
 @Controller
 @RequestMapping(path = "/tours")
 public class ExcursionsController {
-      
+    
+    /** ExcursionService instance */
     @Autowired
     private ExcursionService excursionService;
     
+    /**
+     * Handles request to show all excursions (schedule).
+     * @return model and view
+     */
     @GetMapping("/all")
     public ModelAndView all() {        
         return new ModelAndView("excursions/excursionsAll", "excursions", excursionService.listSchedule());
     }
     
+    /**
+     * Handles request to "main" tours' page.
+     * @return model and view
+     */
     @GetMapping()
     public ModelAndView onTours() {
         return new ModelAndView("excursions/excursions", "excursions", excursionService.listExcursions());
     }
     
+    /**
+     * Handles request to search for excursions in given time slot, renders search form.
+     * @return model and view
+     */
     @GetMapping("/timeslot")
-    public String onTimeslotGet() {
-        return "excursions/excursionsInSlot";
+    public ModelAndView showTimeSlotForm() {
+        ModelAndView model = new ModelAndView("excursions/excursionsInSlot");
+        model.addObject("start", LocalDateTime.now());
+        model.addObject("end", LocalDateTime.now().plusHours(2));
+        return model;
     }
     
+    /**
+     * Handles request to process searching for excursions in time slot based on given input.
+     * @param start start of time slot to search in
+     * @param end end of time slot to search in
+     * @return model and view
+     */
     @PostMapping("/timeslot")
-    public ModelAndView onTimeslotPost(
+    public ModelAndView processTimeSlotSearchForm(
             @RequestParam(name="start") String start, 
             @RequestParam(name="end") String end) {
         
         ModelAndView model = new ModelAndView("excursions/excursionsInSlotResults");
-        start = start.replace('T', ' ');
-        end = end.replace('T', ' ');
+        // trim milliseconds and delimiters 
+        start = start.replace('T', ' ').substring(0, (start.length() - 7));
+        end = end.replace('T', ' ').substring(0, (end.length() - 7));
         model.addObject("start", start);
         model.addObject("end", end);
                 

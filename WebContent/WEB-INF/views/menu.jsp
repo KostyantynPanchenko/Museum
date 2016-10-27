@@ -44,13 +44,5 @@
 				<img src="${UA}" width="16px" />
 			</a>
 		</li>
-		
-						
-		<!--li class="w3-right w3-hover-none w3-padding-0"><a href="${uk}" class="w3-padding-0">
-			<span class="w3-text-blue">U</span><span class="w3-text-yellow">K</span>
-		</a></li>						
-		<li class="w3-right w3-hover-none w3-padding-0"><a href="${en}" class="w3-padding-0">
-			<span class="w3-text-blue">G</span><span class="w3-text-red">B</span>
-		</a></li-->
 	</ul>
 </div>

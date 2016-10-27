@@ -44,9 +44,14 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		super(Guide.class);
 	}
 
+	/**
+     * Finds all available guides by given time slot
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of guides
+     */
 	@SuppressWarnings("unchecked")
 	@Override
-
 	public List<Guide> findByTime(LocalDateTime start, LocalDateTime end) {
 		StringBuilder query = new StringBuilder(
 				"FROM Guide WHERE id NOT IN (SELECT guide FROM Excursion AS XS WHERE (XS.start BETWEEN "
@@ -58,6 +63,13 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		return result.list();
 	}
 
+	/**
+     * Returns all guides excursion statistic (total excursion number and duration)
+     * by given time slot
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of proxy GuideStatisticDTO object
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<GuideStatisticDTO> getGuidesStatisticByPeriod(LocalDateTime start, LocalDateTime end) {
@@ -65,16 +77,7 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 				"SELECT XS.guide.firstName AS firstName, XS.guide.lastName AS lastName, COUNT(id) AS totalExcursions, "
 						+ "SUM(XS.details.durationsec) AS excursionsTotalDuration " + "FROM Excursion AS XS "
 						+ "WHERE (XS.start >= :startDate AND XS.end <= :endDate) GROUP BY XS.guide");
-		/*
-		 * "SELECT gd.firstName, gd.lastName, COUNT(gd) AS totalExcursions, " +
-		 * "SEC_TO_TIME(SUM(timestampdiff(SECOND, XS.start, XS.end))) AS excursionsTotalDuration "
-		 * + "FROM Excursion AS XS RIGHT JOIN XS.guide AS gd " +
-		 * "WHERE (XS.start >= :startDate AND XS.end <= :endDate) GROUP BY gd");
-		 */
 		System.out.println(query.toString());
-		// Session curSess = sessionFactory.getCurrentSession();
-		// System.out.println(curSess);
-		// Query result = curSess.createQuery(query.toString());
 		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
 		result.setTimestamp("startDate", Timestamp.valueOf(start));
 		result.setTimestamp("endDate", Timestamp.valueOf(end));
@@ -105,13 +108,25 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		return result.list();
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Guide> findByPosition(Position thePosition) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Guide.class);
-		criteria.add(Restrictions.eq("position", thePosition));
-		return criteria.list();
-	}
+	/**
+     * Finds all guides by given position.
+     * @param thePosition guide's position to search upon
+     * @return list of guides
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Guide> findByPosition(Position thePosition) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Guide.class);
+        criteria.add(Restrictions.eq("position", thePosition));
+        return criteria.list();
+    }
+    
+    /**
+     * Finds all available guides by given time slot
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of guides
+     */
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -128,15 +143,3 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 	}
 
 }
-/*
- * public List<GuideStatisticDTO> getCountGuidesByPeriod(LocalDateTime start,
- * LocalDateTime end) { StringBuilder query = new StringBuilder(
- * "SELECT gd.firstName, gd.lastName, COUNT(gd) AS totalExcursions, " +
- * "SEC_TO_TIME(SUM(timestampdiff(SECOND, XS.start, XS.end))) AS excursionsTotalDuration "
- * + "FROM Excursion AS XS RIGHT JOIN XS.guide AS gd " +
- * "WHERE (XS.start >= :startDate AND XS.end <= :endDate) " + "GROUP BY gd");
- * Query result =
- * sessionFactory.getCurrentSession().createQuery(query.toString());
- * result.setTimestamp("startDate", Timestamp.valueOf(start));
- * result.setTimestamp("endDate", Timestamp.valueOf(end)); return result.list();
- */

@@ -14,10 +14,10 @@
 	<!-- Page content -->		
 	<div class="w3-container w3-content w3-center w3-padding-64 w3-card-8" style="max-width: 800px; margin-top: 100px" >
 		<h2 class="w3-wide">Find available guides:</h2>
-		<div class="w3-container w3-content w3-center" style="max-width:260px">			
+		<div class="w3-container w3-content w3-center" style="max-width:280px">			
 		<form method="POST" action="${availableGuides}">
-			<p>From: <input type="datetime-local" name="start" class="w3-input w3-border" /></p>
-			<p>To: <input type="datetime-local" name="end" class="w3-input w3-border" /></p>
+			<p>From: <input type="datetime-local" name="start" value="${start}" class="w3-input w3-border" required="required"/></p>
+			<p>To: <input type="datetime-local" name="end" value="${end}"class="w3-input w3-border" required="required"/></p>
 			<p><input type="submit" class="w3-btn-block w3-blue"/></p>
 		</form>
 		</div>

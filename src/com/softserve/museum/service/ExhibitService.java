@@ -28,7 +28,7 @@ public interface ExhibitService {
     
     /**
      * Makes given instance persisted.
-     * @param exhibit instane to be persisted
+     * @param exhibit instance to be persisted
      * @return persisted instance
      */
     public abstract Integer save(Exhibit exhibit);
@@ -80,6 +80,11 @@ public interface ExhibitService {
      */
     public abstract List<Exhibit> findExhibitByMaterial(String material);
     
+    /**
+     * Finds exhibits by given Materials' names.
+     * @param chosenMaterials Materials' names to search upon
+     * @return list of exhibits
+     */
     public abstract List<Exhibit> findExhibitByMaterials(String[] chosenMaterials);
     
     /**
