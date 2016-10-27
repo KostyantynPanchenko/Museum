@@ -48,16 +48,30 @@ public class ExhibitServiceImpl implements ExhibitService {
     @Autowired
     private TechniqueDAO techniques;
     
+    /**
+     * Finds all exhibits.
+     * @return list of all exhibits
+     */
     @Override
     public List<Exhibit> listExhibits() {
         return exhibits.getAll();
     }
 
+    /**
+     * Finds exhibits by given Author.
+     * @param author Author instance to search upon
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByAuthor(Author author) {
         return exhibits.findExhibitByAuthor(author);
     }
     
+    /**
+     * Finds exhibits by given Author's name.
+     * @param author Author's name to search upon
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByAuthor(String author) {
         List<Author> list = authors.findAuthorByName(author);
@@ -67,11 +81,21 @@ public class ExhibitServiceImpl implements ExhibitService {
         return exhibits.findExhibitByAuthor(list.get(0));
     }
 
+    /**
+     * Finds exhibits by given Material.
+     * @param material Material instance to search upon
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByMaterial(Material material) {
         return exhibits.findExhibitByMaterial(material);
     }
 
+    /**
+     * Finds exhibits by given Material's name.
+     * @param material Material's name to search upon
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByMaterial(String material) {
         List<Material> list = materials.findMaterialByName(material);
@@ -81,6 +105,11 @@ public class ExhibitServiceImpl implements ExhibitService {
         return exhibits.findExhibitByMaterial(list.get(0));
     }
     
+    /**
+     * Finds exhibits by given Materials' names.
+     * @param chosenMaterials Materials' names to search upon
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByMaterials(String[] chosenMaterials) {
         List<Material> list = new ArrayList<>();
@@ -92,11 +121,21 @@ public class ExhibitServiceImpl implements ExhibitService {
         return exhibits.findExhibitByMaterials(list);
     }
 
+    /**
+     * Finds exhibits by given Technique.
+     * @param material Technique instance to search upon
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByTechnique(Technique technique) {
         return exhibits.findExhibitByTechnique(technique);
     }
 
+    /**
+     * Finds exhibits by given Technique's name.
+     * @param material Technique name to search upon
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByTechniquel(String technique) {
         List<Technique> list = techniques.findTechniqueByName(technique);
@@ -106,21 +145,40 @@ public class ExhibitServiceImpl implements ExhibitService {
         return exhibits.findExhibitByTechnique(list.get(0));
     }
     
+    /**
+     * Finds all exhibits by hall number.
+     * @param hallNumber given hall's number
+     * @return list of exhibits
+     */
     @Override
     public List<Exhibit> findExhibitByHall(Integer hallNumber) {
         return exhibits.findExhibitByHall(hallNumber);
     }
 
+    /**
+     * Makes given instance persisted.
+     * @param exhibit instance to be persisted
+     * @return persisted instance
+     */
     @Override
     public Integer save(Exhibit exhibit) {
         return exhibits.save(exhibit);
     }
 
+    /**
+     * Updates given instance.
+     * @param exhibit instance to be updated
+     * @return updated instance
+     */
     @Override
     public Exhibit update(Exhibit exhibit) {
         return exhibits.update(exhibit);
     }
 
+    /**
+     * Deletes given instance.
+     * @param exhibit instance to be deleted
+     */
     @Override
     public void delete(Exhibit exhibit) {
         exhibits.delete(exhibit);

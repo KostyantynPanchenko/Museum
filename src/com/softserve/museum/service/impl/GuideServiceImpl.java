@@ -40,11 +40,21 @@ public class GuideServiceImpl implements GuideService {
     @Autowired
     private ExcursionDAO excursions;
     
+    /**
+     * Finds all guides.
+     * @return list of all guides
+     */
     @Override
     public List<Guide> listGuides() {
         return guides.getAll();
     }
     
+    /**
+     * Finds all guides in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of guides
+     */
     @Override
     public List<Guide> findByTime(LocalDateTime start, LocalDateTime end) {
         List<Excursion> eList = excursions.findInPeriod(start, end);        
@@ -58,6 +68,12 @@ public class GuideServiceImpl implements GuideService {
     }
     
 
+    /**
+     * Finds all guides in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of guides
+     */
     @Override
     public List<Guide> findByTime(String start, String end) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -79,21 +95,40 @@ public class GuideServiceImpl implements GuideService {
         return guides.getCountTotalTimePerGuideByPeriod(start, end);
     }
 
+    /**
+     * Makes given guide persistent.
+     * @param guide instance to be persisted
+     * @return guide's id
+     */
     @Override
     public Integer save(Guide guide) {
         return guides.save(guide);
     }
 
+    /**
+     * Updates given instance.
+     * @param guide instance to be persisted
+     * @return updated instance
+     */
     @Override
     public Guide update(Guide guide) {
         return guides.update(guide);
     }
 
+    /**
+     * Deleted given instance.
+     * @param guide instance to be deleted
+     */
     @Override
     public void delete(Guide guiden) {
         guides.delete(guiden);
     }
 
+    /**
+     * Finds guide by given position.
+     * @param position guide's position
+     * @return list of guides
+     */
     @Override
     public List<Guide> findByPosition(String position) {
         Position thePosition;
