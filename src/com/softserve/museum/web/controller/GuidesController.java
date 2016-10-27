@@ -74,8 +74,9 @@ public class GuidesController {
             @RequestParam(name="end") String end) {
         
         ModelAndView model = new ModelAndView("guides/guidesAvailableResults");
-        start = start.replace('T', ' ');
-        end = end.replace('T', ' ');
+     // trim milliseconds and delimiters 
+        start = start.replace('T', ' ').substring(0, (start.length() - 7));
+        end = end.replace('T', ' ').substring(0, (end.length() - 7));
         model.addObject("start", start);
         model.addObject("end", end);
         model.addObject("guides", guideService.findByTime(start, end));
