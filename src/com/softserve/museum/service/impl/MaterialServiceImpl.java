@@ -15,20 +15,11 @@ public class MaterialServiceImpl implements MaterialService {
     @Autowired
     private MaterialDAO materials;
     
-    /**
-     * Finds all materials
-     * @return <code>List&lt;Material&gt;</code>of all materials
-     */
     @Override
     public List<Material> listMaterials() {
         return materials.getAll();
     }
 
-    /**
-     * Finds all materials
-     * @param m given material name
-     * @return <code>List&lt;Material&gt;</code>of all materials by given nam
-     */
     @Override
     public List<Material> findMaterialByName(String m) {
         return materials.findMaterialByName(m);

@@ -9,6 +9,9 @@
 
 package com.softserve.museum.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.softserve.museum.domain.Exhibit;
 import com.softserve.museum.service.ExhibitService;
 import com.softserve.museum.service.MaterialService;
 import com.softserve.museum.service.TechniqueService;
@@ -81,13 +85,22 @@ public class ExhibitsController {
 
     @PostMapping("/material")
     public ModelAndView byMaterialPost(@RequestParam("chosenMaterials") String[] chosenMaterials) {
-        return new ModelAndView("exhibits/exhibitsByMaterialResults", "exhibits", 
-                exhibitService.findExhibitByMaterial(chosenMaterials));
+        ModelAndView model = new ModelAndView(
+                "exhibits/exhibitsByMaterialResults");
+        List<Exhibit> exhibits = new ArrayList<>();
+
+        for (String m : chosenMaterials) {
+            List<Exhibit> list = exhibitService.findExhibitByMaterial(m);
+            exhibits.addAll(list);
+        }
+
+        model.addObject("exhibits", exhibits);
+        return model;
     }
 
     @GetMapping("/technique")
     public ModelAndView byTechnique() {
-        return new ModelAndView("exhibits/exhibitsByTechnique", "techniques",
+        return new ModelAndView("exhibits/exhibitsByTechnique", "techniues",
                 techniqueService.listTechniques());
     }
 

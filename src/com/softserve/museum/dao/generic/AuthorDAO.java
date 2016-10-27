@@ -23,10 +23,5 @@ import com.softserve.museum.domain.Author;
  */
 public interface AuthorDAO extends GenericDAO<Author, Integer> {
 
-    /**
-     * Finds Author by name.
-     * @param name Author's name
-     * @return list of authors by given name
-     */
     public abstract List<Author> findAuthorByName(String name);
 }

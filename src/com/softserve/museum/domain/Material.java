@@ -56,10 +56,5 @@ public class Material {
     public final void setDescription(String description) {
         this.description = description;
     }
-
-    @Override
-    public String toString() {
-        return "Material [id=" + id + ", description=" + description + "]";
-    } 
-    
+  
 }

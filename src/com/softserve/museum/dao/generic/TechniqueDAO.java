@@ -23,11 +23,6 @@ import com.softserve.museum.domain.Technique;
  */
 public interface TechniqueDAO extends GenericDAO<Technique, Integer> {
 
-    /**
-     * Finds all techniques by given name.
-     * @param technique technique's name to search upon
-     * @return list of techniques
-     */
     public abstract List<Technique> findTechniqueByName(String technique);
 
 }

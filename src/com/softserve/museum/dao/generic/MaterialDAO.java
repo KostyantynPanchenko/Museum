@@ -23,11 +23,6 @@ import com.softserve.museum.domain.Material;
  */
 public interface MaterialDAO extends GenericDAO<Material, Integer> {
 
-    /**
-     * Finds all materials
-     * @param material given material name
-     * @return <code>List&lt;Material&gt;</code>of all materials by given name
-     */
     public abstract List<Material> findMaterialByName(String material);
 
 }

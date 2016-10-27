@@ -36,11 +36,6 @@ public class TechniqueDAOimpl extends AbstractDAO<Technique, Integer> implements
         super(Technique.class);
     }
 
-    /**
-     * Finds all techniques by given name.
-     * @param technique technique's name to search upon
-     * @return list of techniques
-     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Technique> findTechniqueByName(String technique) {

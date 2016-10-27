@@ -41,14 +41,9 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		super(Guide.class);
 	}
 
-	/**
-     * Finds all guides in given time slot.
-     * @param start start of time slot
-     * @param end end of time slot
-     * @return list of guides
-     */
 	@SuppressWarnings("unchecked")
 	@Override
+
 	public List<Guide> findByTime(LocalDateTime start, LocalDateTime end) {
 		StringBuilder query = new StringBuilder(
 				"FROM Guide WHERE id NOT IN (SELECT guide FROM Excursion AS XS WHERE (XS.start BETWEEN "
@@ -84,11 +79,6 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		return result.list();
 	}
 
-	/**
-     * Finds guide by given position.
-     * @param thePosition guide's position
-     * @return list of guides
-     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Guide> findByPosition(Position thePosition) {
@@ -96,13 +86,6 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
         criteria.add(Restrictions.eq("position", thePosition));
         return criteria.list();
     }
-    
-    /**
-     * Finds all guides in given time slot.
-     * @param start start of time slot
-     * @param end end of time slot
-     * @return list of guides
-     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Guide> findByTime(Time start, Time end) {

@@ -32,7 +32,7 @@ public interface MaterialService {
     /**
      * Finds all materials
      * @param m given material name
-     * @return <code>List&lt;Material&gt;</code>of all materials by given name
+     * @return <code>List&lt;Material&gt;</code>of all materials by given nam
      */
     public abstract List<Material> findMaterialByName(String m);
 
