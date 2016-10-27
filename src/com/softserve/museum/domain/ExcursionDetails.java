@@ -44,6 +44,9 @@ public class ExcursionDetails {
     @Convert(converter = LocalTimeConverter.class)
     private LocalTime duration;
     
+    @Column
+    private long durationSec;
+
     /**
      * Default no-args constructor
      */
@@ -73,4 +76,11 @@ public class ExcursionDetails {
         this.duration = duration;
     }
     
+    public final long getDurationSec() {
+        return durationSec;
+    }
+
+    public final void setDuration(long duration) {
+        this.durationSec = duration;
+    }
 }

@@ -39,11 +39,11 @@ public class Excursion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private int id;
     
-    @Column
+	@Column(name = "start")
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime start;
     
-    @Column
+	@Column(name = "end")
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime end;
     

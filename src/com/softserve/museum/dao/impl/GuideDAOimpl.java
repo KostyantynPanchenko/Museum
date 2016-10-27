@@ -8,9 +8,11 @@
  */
 package com.softserve.museum.dao.impl;
 
+import java.time.LocalTime;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.GuideDAO;
 import com.softserve.museum.domain.Guide;
+import com.softserve.museum.domain.GuideStatisticDTO;
 import com.softserve.museum.domain.Position;
 
 /**
@@ -55,16 +58,39 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		return result.list();
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	@Override
-	public List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end) {
+	public List<GuideStatisticDTO> getGuidesStatisticByPeriod(LocalDateTime start, LocalDateTime end) {
 		StringBuilder query = new StringBuilder(
-				"SELECT gd.id, gd.firstName, gd.lastName, gd.position, COUNT(gd) AS cnt FROM Excursion AS XS RIGHT JOIN XS.guide AS gd "
-						+ "WHERE (XS.start >= :startDate AND XS.end <= :endDate) " + "GROUP BY gd");
+				"SELECT XS.guide.firstName AS firstName, XS.guide.lastName AS lastName, COUNT(id) AS totalExcursions, "
+						+ "SUM(XS.details.durationsec) AS excursionsTotalDuration " + "FROM Excursion AS XS "
+						+ "WHERE (XS.start >= :startDate AND XS.end <= :endDate) GROUP BY XS.guide");
+		/*
+		 * "SELECT gd.firstName, gd.lastName, COUNT(gd) AS totalExcursions, " +
+		 * "SEC_TO_TIME(SUM(timestampdiff(SECOND, XS.start, XS.end))) AS excursionsTotalDuration "
+		 * + "FROM Excursion AS XS RIGHT JOIN XS.guide AS gd " +
+		 * "WHERE (XS.start >= :startDate AND XS.end <= :endDate) GROUP BY gd");
+		 */
+		System.out.println(query.toString());
+		// Session curSess = sessionFactory.getCurrentSession();
+		// System.out.println(curSess);
+		// Query result = curSess.createQuery(query.toString());
 		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
 		result.setTimestamp("startDate", Timestamp.valueOf(start));
 		result.setTimestamp("endDate", Timestamp.valueOf(end));
-		return result.list();
+		List<GuideStatisticDTO> returnResult = new ArrayList<GuideStatisticDTO>();
+		for (Object[] obj : (List<Object[]>) result.list()) {
+			GuideStatisticDTO listElement = new GuideStatisticDTO();
+			listElement.setFirstName(String.valueOf(obj[0]));
+			listElement.setLastName(String.valueOf(obj[1]));
+			listElement.setTotalExcursions((long) obj[2]);
+			listElement.setExcursionsTotalDuration(LocalTime.MIN.plusSeconds((long) obj[3]));
+			returnResult.add(listElement);
+
+		}
+
+		return returnResult;
+		// return result.list();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -79,13 +105,14 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		return result.list();
 	}
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<Guide> findByPosition(Position thePosition) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Guide.class);
-        criteria.add(Restrictions.eq("position", thePosition));
-        return criteria.list();
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Guide> findByPosition(Position thePosition) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Guide.class);
+		criteria.add(Restrictions.eq("position", thePosition));
+		return criteria.list();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Guide> findByTime(Time start, Time end) {
@@ -98,6 +125,18 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());
 
 		return result.list();
-	}    
- 
+	}
+
 }
+/*
+ * public List<GuideStatisticDTO> getCountGuidesByPeriod(LocalDateTime start,
+ * LocalDateTime end) { StringBuilder query = new StringBuilder(
+ * "SELECT gd.firstName, gd.lastName, COUNT(gd) AS totalExcursions, " +
+ * "SEC_TO_TIME(SUM(timestampdiff(SECOND, XS.start, XS.end))) AS excursionsTotalDuration "
+ * + "FROM Excursion AS XS RIGHT JOIN XS.guide AS gd " +
+ * "WHERE (XS.start >= :startDate AND XS.end <= :endDate) " + "GROUP BY gd");
+ * Query result =
+ * sessionFactory.getCurrentSession().createQuery(query.toString());
+ * result.setTimestamp("startDate", Timestamp.valueOf(start));
+ * result.setTimestamp("endDate", Timestamp.valueOf(end)); return result.list();
+ */

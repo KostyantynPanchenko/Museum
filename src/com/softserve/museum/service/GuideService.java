@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.softserve.museum.domain.Guide;
+import com.softserve.museum.domain.GuideStatisticDTO;
 
 /**
  * 
@@ -66,9 +67,11 @@ public interface GuideService {
      */
     public abstract List<Guide> findByTime(String start, String end);
 
-	@SuppressWarnings("rawtypes")
-	public abstract List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end);
+	public abstract List<GuideStatisticDTO> getGuidesStatisticByPeriod(LocalDateTime start, LocalDateTime end);
 
+/*	@SuppressWarnings("rawtypes")
+	public abstract List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end);
+*/
 	@SuppressWarnings("rawtypes")
 	public abstract List getCountTotalTimePerGuideByPeriod(LocalDateTime start, LocalDateTime end);
 
