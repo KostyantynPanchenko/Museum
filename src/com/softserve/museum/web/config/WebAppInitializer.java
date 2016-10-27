@@ -30,7 +30,7 @@ public class WebAppInitializer
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { RootConfig.class, PersistenceConfig.class };
+        return new Class<?>[] { PersistenceConfig.class };
     }
 
     @Override

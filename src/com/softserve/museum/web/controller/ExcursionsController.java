@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.softserve.museum.domain.Excursion;
-import com.softserve.museum.domain.ExcursionDetails;
 import com.softserve.museum.service.ExcursionService;
 
 /**
@@ -41,18 +40,12 @@ public class ExcursionsController {
     
     @GetMapping("/all")
     public ModelAndView all() {        
-        ModelAndView model = new ModelAndView("excursions/excursionsAll");
-        List<Excursion> excursions = excursionService.listSchedule();
-        model.addObject("excursions", excursions);
-        return model;
+        return new ModelAndView("excursions/excursionsAll", "excursions", excursionService.listSchedule());
     }
     
     @GetMapping()
     public ModelAndView onTours() {
-        ModelAndView model = new ModelAndView("excursions/excursions");
-        List<ExcursionDetails> excursions = excursionService.listExcursions();
-        model.addObject("excursions", excursions);
-        return model;
+        return new ModelAndView("excursions/excursions", "excursions", excursionService.listExcursions());
     }
     
     @GetMapping("/timeslot")

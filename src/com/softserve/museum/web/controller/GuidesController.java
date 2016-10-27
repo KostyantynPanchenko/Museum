@@ -9,17 +9,17 @@
 
 package com.softserve.museum.web.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.softserve.museum.domain.Guide;
 import com.softserve.museum.service.GuideService;
 
 /**
@@ -40,26 +40,12 @@ public class GuidesController {
     
     @GetMapping
     public ModelAndView onGuides() {
-        ModelAndView model = new ModelAndView("guides/guides");
-        List<Guide> guides = guideService.listGuides();
-        model.addObject("guides", guides);
-        return model;
-    }
-    
-    @GetMapping("/all")
-    public ModelAndView all() {
-        ModelAndView model = new ModelAndView("guides/guides");
-        List<Guide> guides = guideService.listGuides();
-        model.addObject("guides", guides);
-        return model;
+        return new ModelAndView("guides/guides", "guides", guideService.listGuides());
     }
     
     @GetMapping("/available")
-    public ModelAndView onAvailable() {
-        ModelAndView model = new ModelAndView("guides/guidesAvailable");
-        List<Guide> guides = guideService.listGuides();
-        model.addObject("guides", guides);
-        return model;
+    public String showAvailableForm(Model model) {
+        return "guides/guidesAvailable";
     }
     
     @PostMapping("/available")
@@ -72,25 +58,27 @@ public class GuidesController {
         end = end.replace('T', ' ');
         model.addObject("start", start);
         model.addObject("end", end);
-                
-        List<Guide> guides = guideService.findByTime(start, end);
-        model.addObject("guides", guides);
+        model.addObject("guides", guideService.findByTime(start, end));
         return model;
     }
     
     @GetMapping("/position")
-    public String onPosition() {
+    public String showPositionForm() {
         return "guides/guidesByPosition";
     }
     
     @PostMapping("/position")
-    public ModelAndView onPosition(@RequestParam(name="position") String position) {
+    public String processPositionForm(@RequestParam(name="position") String position, RedirectAttributes model) {
+        model.addAttribute("position", position);
+        return "redirect:/guides/position/{position}";
+    }
+    
+    @GetMapping("/position/{position}")
+    public ModelAndView showGuideByPosition(@PathVariable("position") String position) {
         ModelAndView model = new ModelAndView("guides/guidesByPositionResults");
         model.addObject("position", position);
-        
-        List<Guide> guides = guideService.findByPosition(position);
-        
-        model.addObject("guides", guides);
+        model.addObject("guides", guideService.findByPosition(position));
         return model;
-    }
+    }    
+    
 }

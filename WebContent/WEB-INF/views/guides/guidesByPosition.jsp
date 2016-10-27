@@ -5,7 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <spring:url value="/guides/position" var="position" />
-<spring:url value="/guides/available" var="available" />
 
 <html>
 	<jsp:include page="../head.jsp"></jsp:include>
@@ -17,7 +16,7 @@
 		<h2 class="w3-wide">Enter guide's position:</h2>
 			
 		<form method="post" action="${position}">
-			<p><input type="text" value="" name="position" class="w3-input w3-border" /></p>
+			<p><input type="text" name="position" class="w3-input w3-border" /></p>
 			<p><input type="submit" class="w3-btn w3-blue"/></p>
 		</form>			
 	</div>

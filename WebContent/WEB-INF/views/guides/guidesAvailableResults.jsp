@@ -16,8 +16,10 @@
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
 		<div class="w3-container w3-content w3-center w3-padding-64" style="max-width: 800px" >
 			<h3 class="w3-wide">Guides available</h3>
+			<div class="w3-container w3-content w3-center">
 			<h3 class="w3-wide">from ${start}</h3>
-			<h3 class="w3-wide">to ${end}:</h3>			
+			<h3 class="w3-wide">to ${end}</h3>
+			</div>		
 			
 			<c:choose>
 				<c:when test="${not empty guides}">

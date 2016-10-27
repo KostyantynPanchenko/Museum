@@ -46,22 +46,14 @@ public class GuideServiceImpl implements GuideService {
     }
     
     @Override
-    public List<Guide> findByTime(LocalDateTime start,
-            LocalDateTime end) {
-        List<Excursion> eList = excursions.findInPeriod(start, end);
-        
-        for (Excursion e: eList) {
-            System.out.println(e);
-        }
-        
+    public List<Guide> findByTime(LocalDateTime start, LocalDateTime end) {
+        List<Excursion> eList = excursions.findInPeriod(start, end);        
         List<Guide> gList = guides.getAll();
-        for (Guide g: gList) {
-            System.out.println(g.getFirstName());
-        }
         
         for (Excursion e: eList) {
             gList.remove(e.getGuide());
         }
+        
         return gList;
     }
     

@@ -11,7 +11,6 @@ package com.softserve.museum.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 
@@ -26,8 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CoreController {
 
 	@GetMapping("/")
-	public ModelAndView onIndex() {
-		ModelAndView model = new ModelAndView("index");
-		return model;
+	public String onIndex() {
+		return "index";
 	}
 }

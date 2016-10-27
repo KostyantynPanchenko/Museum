@@ -20,10 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.softserve.museum.domain.Exhibit;
-import com.softserve.museum.domain.Material;
-import com.softserve.museum.domain.Technique;
 import com.softserve.museum.service.ExhibitService;
 import com.softserve.museum.service.MaterialService;
 import com.softserve.museum.service.TechniqueService;
@@ -40,100 +39,82 @@ import com.softserve.museum.service.TechniqueService;
 @Controller
 @RequestMapping(path = "/exhibits")
 public class ExhibitsController {
-      
+
     @Autowired
     private ExhibitService exhibitService;
-    
+
     @Autowired
     private TechniqueService techniqueService;
-    
+
     @Autowired
     private MaterialService materialService;
-    
+
     @GetMapping()
-    public String onExhibits() {        
+    public String onExhibits() {
         return "exhibits/exhibits";
     }
-    
+
     @GetMapping("/all")
     public ModelAndView all() {
-        ModelAndView model = new ModelAndView("exhibits/exhibitsAll");
-        List<Exhibit> exhibits = exhibitService.listExhibits();
-        model.addObject("exhibits", exhibits);
-        return model;
+        return new ModelAndView("exhibits/exhibitsAll", "exhibits", exhibitService.listExhibits());
     }
-    
+
     @GetMapping("/author")
-    public String byAuthorGet() {
+    public String byAuthor() {
         return "exhibits/exhibitsByAuthor";
     }
-    
-    @GetMapping("/author/{author}")
-    public ModelAndView byAuthorName(@PathVariable("author") String author) {        
-        return getExhibitsByAuthor(author);
-    }
-    
+
     @PostMapping("/author")
-    public ModelAndView byAuthorPost(@RequestParam("authorName") String author) {
-        return getExhibitsByAuthor(author);
+    public String byAuthorPost(@RequestParam("authorName") String author, RedirectAttributes model) {
+        model.addAttribute("author", author);
+        return "redirect:/exhibits/author/{author}";
     }
-    
-    private ModelAndView getExhibitsByAuthor(String author) {
+
+    @GetMapping("/author/{author}")
+    public ModelAndView byAuthorResults(@PathVariable("author") String author) {
         ModelAndView model = new ModelAndView("exhibits/exhibitsByAuthorResults");
         model.addObject("author", author);
-        
-        List<Exhibit> exhibits = exhibitService.findExhibitByAuthor(author);
-        
-        if (exhibits == null) {
-            return model;
-        }
-        
-        model.addObject("exhibits", exhibits);
+        model.addObject("exhibits", exhibitService.findExhibitByAuthor(author));
         return model;
     }
-    
+
     @GetMapping("/material")
-    public ModelAndView byMaterialGet() {
-        ModelAndView model = new ModelAndView("exhibits/exhibitsByMaterial");
-        List<Material> materials = materialService.listMaterials();
-        model.addObject("materials", materials);
-        return model;
+    public ModelAndView byMaterial() {
+        return new ModelAndView("exhibits/exhibitsByMaterial", "materials", materialService.listMaterials());
     }
-    
+
     @PostMapping("/material")
     public ModelAndView byMaterialPost(@RequestParam("chosenMaterials") String[] chosenMaterials) {
-        ModelAndView model = new ModelAndView("exhibits/exhibitsByMaterialResults");
-        List<Exhibit> exhibits  = new ArrayList<>();
-        
-        for (String m: chosenMaterials){
-            List<Exhibit> list = exhibitService.findExhibitByMaterial(m);            
+        ModelAndView model = new ModelAndView(
+                "exhibits/exhibitsByMaterialResults");
+        List<Exhibit> exhibits = new ArrayList<>();
+
+        for (String m : chosenMaterials) {
+            List<Exhibit> list = exhibitService.findExhibitByMaterial(m);
             exhibits.addAll(list);
-        }        
-        
+        }
+
         model.addObject("exhibits", exhibits);
         return model;
     }
-    
+
     @GetMapping("/technique")
-    public ModelAndView byTechniqueGet() { 
-        ModelAndView model = new ModelAndView("exhibits/exhibitsByTechnique");
-        List<Technique> techniques = techniqueService.listTechniques();
-        model.addObject("techniques", techniques);
-        return model;
+    public ModelAndView byTechnique() {
+        return new ModelAndView("exhibits/exhibitsByTechnique", "techniues",
+                techniqueService.listTechniques());
     }
-    
+
     @PostMapping("/technique")
-    public ModelAndView byTechniquePost(@RequestParam("technique") String technique) {
+    public String byTechniquePost(@RequestParam("technique") String technique, RedirectAttributes model) {
+        model.addAttribute("technique", technique);
+        return "redirect:/exhibits/technique/{technique}";
+    }
+
+    @GetMapping("/technique/{technique}")
+    public ModelAndView byTechniqueResults(@PathVariable("technique") String technique) {
         ModelAndView model = new ModelAndView("exhibits/exhibitsByTechniqueResults");
         model.addObject("technique", technique);
-        
-        List<Exhibit> exhibits = exhibitService.findExhibitByTechniquel(technique);
-        
-        if (exhibits == null) {
-            return model;
-        }
-        
-        model.addObject("exhibits", exhibits);
+        model.addObject("exhibits", exhibitService.findExhibitByTechniquel(technique));
         return model;
     }
 }
