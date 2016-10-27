@@ -43,12 +43,20 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
         this.entityClass = entityClass;
     }
     
+    /**
+     * Finds object by its id.
+     * @param id object's id
+     * @return instance of type T
+     */
     @SuppressWarnings("unchecked")
     @Override
     public T findById(ID id) {
         return (T) sessionFactory.getCurrentSession().get(entityClass, id); 
     }
 
+    /**
+     * @return all instances of given type T.
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<T> getAll() {
@@ -57,18 +65,32 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
         return criteria.list();
     }
 
+    /**
+     * Persists given entity of type T.
+     * @param entity instance of type T to be persisted.
+     * @return ID of persisted entity.
+     */
     @SuppressWarnings("unchecked")
     @Override
     public ID save(T entity) {
         return (ID) sessionFactory.getCurrentSession().save(entity);
     }
 
+    /**
+     * Updates given instance of type T.
+     * @param entity instance to be updated.
+     * @return persisted entity.
+     */
     @SuppressWarnings("unchecked")
     @Override
     public T update(T entity) {
         return (T) sessionFactory.getCurrentSession().merge(entity);
     }
 
+    /**
+     * Deletes given entity of type T.
+     * @param entity to be deleted.
+     */
     @Override
     public void delete(T entity) {
         sessionFactory.getCurrentSession().delete(entity);

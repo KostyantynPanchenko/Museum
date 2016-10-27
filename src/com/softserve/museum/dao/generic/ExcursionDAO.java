@@ -24,12 +24,34 @@ import com.softserve.museum.domain.Excursion;
  */
 public interface ExcursionDAO extends GenericDAO<Excursion, Integer> {
 
+    /**
+     * Finds excursions which are available in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of Excursion objects 
+     */
     public abstract List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end);
 
+    /**
+     * Finds all excursions which start after given time.
+     * @param start start of time slot
+     * @return list of Excursion objects
+     */
     public abstract List<Excursion> findByStart(LocalDateTime start);
     
-    public abstract List<Excursion> findByEnd(LocalDateTime start);
+    /**
+     * Finds all excursions which start after given time.
+     * @param end end of time slot
+     * @return list of Excursion objects
+     */
+    public abstract List<Excursion> findByEnd(LocalDateTime end);
 
+    /**
+     * Finds all excursions which start or end in given period.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of Excursion objects 
+     */
     public abstract List<Excursion> findInPeriod(LocalDateTime start,
             LocalDateTime end);
 

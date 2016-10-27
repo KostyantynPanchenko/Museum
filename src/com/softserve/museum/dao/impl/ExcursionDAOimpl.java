@@ -39,6 +39,12 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
         super(Excursion.class);
     }
 
+    /**
+     * Finds excursions which are available in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of Excursion objects 
+     */
 	@SuppressWarnings("unchecked")
     @Override
     public List<Excursion> findByTimeSlot(LocalDateTime start, LocalDateTime end) {
@@ -48,6 +54,11 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
 		return criteria.list();
     }
 
+	/**
+     * Finds all excursions which start after given time.
+     * @param start start of time slot
+     * @return list of Excursion objects
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Excursion> findByStart(LocalDateTime start) {
@@ -56,6 +67,11 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
         return criteria.list();
     }
 
+    /**
+     * Finds all excursions which start after given time.
+     * @param end end of time slot
+     * @return list of Excursion objects
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Excursion> findByEnd(LocalDateTime end) {
@@ -64,6 +80,12 @@ public class ExcursionDAOimpl extends AbstractDAO<Excursion, Integer>
         return criteria.list();
     }
     
+    /**
+     * Finds all excursions which start or end in given period.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of Excursion objects 
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Excursion> findInPeriod(LocalDateTime start, LocalDateTime end) {

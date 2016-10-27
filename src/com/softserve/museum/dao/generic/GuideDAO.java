@@ -26,10 +26,23 @@ import com.softserve.museum.domain.Position;
  */
 public interface GuideDAO extends GenericDAO<Guide, Integer> {
 
+    /**
+     * Finds all guides in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of guides
+     */
     public abstract List<Guide> findByTime(LocalDateTime start, LocalDateTime end);
 
+    /**
+     * Finds all guides in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of guides
+     */
 	public abstract List<Guide> findByTime(Time start, Time end);
 
+	
     @SuppressWarnings("rawtypes")
 	public abstract List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end);
 
@@ -37,6 +50,11 @@ public interface GuideDAO extends GenericDAO<Guide, Integer> {
 	public abstract List getCountTotalTimePerGuideByPeriod(LocalDateTime start,
     		LocalDateTime end);
 
+    /**
+     * Finds guide by given position.
+     * @param thePosition guide's position
+     * @return list of guides
+     */
     public abstract List<Guide> findByPosition(Position thePosition);
 
 }

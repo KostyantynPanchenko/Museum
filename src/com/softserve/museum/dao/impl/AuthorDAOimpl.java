@@ -36,6 +36,11 @@ public class AuthorDAOimpl extends AbstractDAO<Author, Integer> implements Autho
 		super(Author.class);
 	}
 
+	/**
+     * Finds Author by name.
+     * @param name Author's name
+     * @return list of authors by given name
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Author> findAuthorByName(String name) {        

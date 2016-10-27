@@ -14,7 +14,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.ExhibitDAO;
@@ -32,7 +32,6 @@ import com.softserve.museum.domain.Technique;
  * @since 19.10.2016
  *
  */
-@SuppressWarnings("deprecation")
 @Repository
 @Transactional
 public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements ExhibitDAO {
@@ -41,37 +40,57 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 		super(Exhibit.class);
 	}
 
+	/**
+     * Finds exhibits by given Author.
+     * @param author Author instance to search upon
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Exhibit> findExhibitByAuthor(Author author) {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("author", author));
+		criteria.add(Restrictions.eq("author", author));
 
 		return criteria.list();
 	}
 
+	/**
+     * Finds exhibits by given Material.
+     * @param materials Materials instance to search upon
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Exhibit> findExhibitByMaterial(Material material) {
+	public List<Exhibit> findExhibitByMaterial(List<Material> materials) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("material", material));
+		criteria.add(Restrictions.in("material", materials));		
 		return criteria.list();
 	}
-
+    
+	/**
+     * Finds exhibits by given Technique.
+     * @param technique Technique instance to search upon
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
     @Override
 	public List<Exhibit> findExhibitByTechnique(Technique technique) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("technique", technique));
+		criteria.add(Restrictions.eq("technique", technique));
 		return criteria.list();
 	}
 
+	/**
+     * Finds all exhibits by hall number.
+     * @param hallNumber given hall's number
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Exhibit> findExhibitByHall(Integer hallNumber) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("hall", hallNumber));
+		criteria.add(Restrictions.eq("hall", hallNumber));
 		return criteria.list();
 	}
 

@@ -40,7 +40,8 @@ public interface GenericDAO<T, ID> {
      */
     public abstract ID save(T entity);
     
-    /**sates given instance of type T.
+    /**
+     * Updates given instance of type T.
      * @param entity instance to be updated.
      * @return persisted entity.
      */

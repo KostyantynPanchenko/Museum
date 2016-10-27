@@ -71,25 +71,25 @@ public interface ExhibitService {
      * @param material Material instance to search upon
      * @return list of exhibits
      */
-    public abstract List<Exhibit> findExhibitByMaterial(Material material);
+    public abstract List<Exhibit> findExhibitByMaterial(List<Material> material);
     
     /**
      * Finds exhibits by given Material's name.
      * @param material Material's name to search upon
      * @return list of exhibits
      */
-    public abstract List<Exhibit> findExhibitByMaterial(String material);
+    public abstract List<Exhibit> findExhibitByMaterial(String... material);
     
     /**
      * Finds exhibits by given Technique.
-     * @param material Technique instance to search upon
+     * @param technique Technique instance to search upon
      * @return list of exhibits
      */
     public abstract List<Exhibit> findExhibitByTechnique(Technique technique);
 
     /**
      * Finds exhibits by given Technique's name.
-     * @param material Technique name to search upon
+     * @param technique Technique name to search upon
      * @return list of exhibits
      */
     public abstract List<Exhibit> findExhibitByTechniquel(String technique);
