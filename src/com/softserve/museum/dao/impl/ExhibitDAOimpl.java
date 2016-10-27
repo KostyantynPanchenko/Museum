@@ -40,6 +40,11 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 		super(Exhibit.class);
 	}
 
+	/**
+     * Finds exhibits by given author.
+     * @param author Author object to search upon
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Exhibit> findExhibitByAuthor(Author author) {
@@ -50,6 +55,11 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 		return criteria.list();
 	}
 
+	/**
+     * Finds exhibits by given material.
+     * @param material material to search upon
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Exhibit> findExhibitByMaterial(Material material) {
@@ -58,7 +68,11 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 		return criteria.list();
 	}
 
-
+	/**
+     * Finds exhibits by given list of materials.
+     * @param materials list of materials
+     * @return list of exhibits
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Exhibit> findExhibitByMaterials(List<Material> chosenMaterials) {
@@ -67,6 +81,11 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
         return criteria.list();
     }
 	
+    /**
+     * Finds exhibits by given technique
+     * @param technique given technique
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
     @Override
 	public List<Exhibit> findExhibitByTechnique(Technique technique) {
@@ -75,6 +94,11 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 		return criteria.list();
 	}
 
+	/**
+     * Finds exhibits by given hall number
+     * @param hallNumber hall number
+     * @return list of exhibits
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Exhibit> findExhibitByHall(Integer hallNumber) {

@@ -26,14 +26,39 @@ import com.softserve.museum.domain.Technique;
  */
 public interface ExhibitDAO extends GenericDAO<Exhibit, Integer> {
 
+    /**
+     * Finds exhibits by given author.
+     * @param author Author object to search upon
+     * @return list of exhibits
+     */
     public abstract List<Exhibit> findExhibitByAuthor(Author author);
 
+    /**
+     * Finds exhibits by given material.
+     * @param material material to search upon
+     * @return list of exhibits
+     */
     public abstract List<Exhibit> findExhibitByMaterial(Material material);
     
+    /**
+     * Finds exhibits by given list of materials.
+     * @param materials list of materials
+     * @return list of exhibits
+     */
     public abstract List<Exhibit> findExhibitByMaterials(List<Material> materials);
 
+    /**
+     * Finds exhibits by given technique
+     * @param technique given technique
+     * @return list of exhibits
+     */
     public abstract List<Exhibit> findExhibitByTechnique(Technique technique);
 
+    /**
+     * Finds exhibits by given hall number
+     * @param hallNumber hall number
+     * @return list of exhibits
+     */
     public abstract List<Exhibit> findExhibitByHall(Integer hallNumber);
 
 }

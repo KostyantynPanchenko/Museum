@@ -36,6 +36,11 @@ public class MaterialDAOimpl extends AbstractDAO<Material, Integer> implements M
         super(Material.class);
     }
 
+    /**
+     * Finds materials by given name
+     * @param material material's name
+     * @return list of materials
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Material> findMaterialByName(String material) {
