@@ -29,6 +29,8 @@ public interface ExhibitDAO extends GenericDAO<Exhibit, Integer> {
     public abstract List<Exhibit> findExhibitByAuthor(Author author);
 
     public abstract List<Exhibit> findExhibitByMaterial(Material material);
+    
+    public abstract List<Exhibit> findExhibitByMaterials(List<Material> materials);
 
     public abstract List<Exhibit> findExhibitByTechnique(Technique technique);
 

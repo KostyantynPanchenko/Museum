@@ -8,6 +8,7 @@
  */
 package com.softserve.museum.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,17 @@ public class ExhibitServiceImpl implements ExhibitService {
             return null;
         }
         return exhibits.findExhibitByMaterial(list.get(0));
+    }
+    
+    @Override
+    public List<Exhibit> findExhibitByMaterials(String[] chosenMaterials) {
+        List<Material> list = new ArrayList<>();
+        
+        for (String s: chosenMaterials) {
+            list.add(materials.findMaterialByName(s).get(0));
+        }
+        
+        return exhibits.findExhibitByMaterials(list);
     }
 
     @Override

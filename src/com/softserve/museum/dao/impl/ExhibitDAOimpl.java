@@ -14,7 +14,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.softserve.museum.dao.generic.ExhibitDAO;
@@ -32,7 +32,6 @@ import com.softserve.museum.domain.Technique;
  * @since 19.10.2016
  *
  */
-@SuppressWarnings("deprecation")
 @Repository
 @Transactional
 public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements ExhibitDAO {
@@ -46,7 +45,7 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 	public List<Exhibit> findExhibitByAuthor(Author author) {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("author", author));
+		criteria.add(Restrictions.eq("author", author));
 
 		return criteria.list();
 	}
@@ -55,15 +54,24 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 	@Override
 	public List<Exhibit> findExhibitByMaterial(Material material) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("material", material));
+		criteria.add(Restrictions.eq("material", material));
 		return criteria.list();
 	}
 
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Exhibit> findExhibitByMaterials(List<Material> chosenMaterials) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
+        criteria.add(Restrictions.in("material", chosenMaterials));
+        return criteria.list();
+    }
+	
 	@SuppressWarnings("unchecked")
     @Override
 	public List<Exhibit> findExhibitByTechnique(Technique technique) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("technique", technique));
+		criteria.add(Restrictions.eq("technique", technique));
 		return criteria.list();
 	}
 
@@ -71,7 +79,7 @@ public class ExhibitDAOimpl extends AbstractDAO<Exhibit, Integer> implements Exh
 	@Override
 	public List<Exhibit> findExhibitByHall(Integer hallNumber) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Exhibit.class);
-		criteria.add(Expression.eq("hall", hallNumber));
+		criteria.add(Restrictions.eq("hall", hallNumber));
 		return criteria.list();
 	}
 

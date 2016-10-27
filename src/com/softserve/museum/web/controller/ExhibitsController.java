@@ -85,23 +85,23 @@ public class ExhibitsController {
 
     @PostMapping("/material")
     public ModelAndView byMaterialPost(@RequestParam("chosenMaterials") String[] chosenMaterials) {
-        ModelAndView model = new ModelAndView(
-                "exhibits/exhibitsByMaterialResults");
-        List<Exhibit> exhibits = new ArrayList<>();
-
-        for (String m : chosenMaterials) {
-            List<Exhibit> list = exhibitService.findExhibitByMaterial(m);
-            exhibits.addAll(list);
-        }
-
-        model.addObject("exhibits", exhibits);
-        return model;
+        return new ModelAndView("exhibits/exhibitsByMaterialResults", 
+                "exhibits", exhibitService.findExhibitByMaterials(chosenMaterials));
+//        ModelAndView model = new ModelAndView("exhibits/exhibitsByMaterialResults");
+//        List<Exhibit> exhibits = new ArrayList<>();
+//
+//        for (String m : chosenMaterials) {
+//            List<Exhibit> list = exhibitService.findExhibitByMaterial(m);
+//            exhibits.addAll(list);
+//        }
+//
+//        model.addObject("exhibits", exhibits);
+//        return model;
     }
 
     @GetMapping("/technique")
     public ModelAndView byTechnique() {
-        return new ModelAndView("exhibits/exhibitsByTechnique", "techniques",
-                techniqueService.listTechniques());
+        return new ModelAndView("exhibits/exhibitsByTechnique", "techniques", techniqueService.listTechniques());
     }
 
     @PostMapping("/technique")

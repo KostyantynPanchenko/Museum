@@ -80,6 +80,8 @@ public interface ExhibitService {
      */
     public abstract List<Exhibit> findExhibitByMaterial(String material);
     
+    public abstract List<Exhibit> findExhibitByMaterials(String[] chosenMaterials);
+    
     /**
      * Finds exhibits by given Technique.
      * @param material Technique instance to search upon
@@ -99,6 +101,6 @@ public interface ExhibitService {
      * @param hallNumber given hall's number
      * @return list of exhibits
      */
-    public abstract List<Exhibit> findExhibitByHall(Integer hallNumber);
+    public abstract List<Exhibit> findExhibitByHall(Integer hallNumber);   
     
 }
