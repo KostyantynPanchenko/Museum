@@ -6,6 +6,7 @@
 
 <spring:url value="/guides/position" var="position" />
 <spring:url value="/guides/available" var="available" />
+<spring:url value="/guides/statistics" var="statistics" />
 
 <html>
 	<jsp:include page="../head.jsp"></jsp:include>
@@ -28,9 +29,12 @@
 				</c:forEach>
 			</table>
 		</c:if>
-		<br/><br/>		
-		<div class="w3-third"><a href="${position}" class="w3-btn-block w3-black">Find guides by position</a></div>
-		<div class="w3-third w3-right"><a href="${available}" class="w3-btn-block w3-black">Find available guides</a></div>
+		<br/><br/>
+		<div class="w3-container w3-content w3-center w3-padding-32" style="max-width: 280px">
+			<p><a href="${position}" class="w3-btn-block w3-black">Find guides by position</a></p>
+			<p><a href="${available}" class="w3-btn-block w3-black">Find available guides</a></p>
+			<p><a href="${statistics}" class="w3-btn-block w3-black">Statistics per guide</a></p>
+		</div>				
 	</div>	
 		
 	<!-- Footer -->

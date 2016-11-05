@@ -75,7 +75,7 @@ public class GuideDAOimpl extends AbstractDAO<Guide, Integer> implements GuideDA
 	public List<GuideStatisticDTO> getGuidesStatisticByPeriod(LocalDateTime start, LocalDateTime end) {
 		StringBuilder query = new StringBuilder(
 				"SELECT XS.guide.firstName AS firstName, XS.guide.lastName AS lastName, COUNT(id) AS totalExcursions, "
-						+ "SUM(XS.details.durationsec) AS excursionsTotalDuration " + "FROM Excursion AS XS "
+						+ "SUM(XS.details.durationSec) AS excursionsTotalDuration " + "FROM Excursion AS XS "
 						+ "WHERE (XS.start >= :startDate AND XS.end <= :endDate) GROUP BY XS.guide");
 		System.out.println(query.toString());
 		Query result = sessionFactory.getCurrentSession().createQuery(query.toString());

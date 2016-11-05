@@ -15,9 +15,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.softserve.museum.dao.generic.ExcursionDAO;
 import com.softserve.museum.dao.generic.GuideDAO;
-import com.softserve.museum.domain.Excursion;
 import com.softserve.museum.domain.Guide;
 import com.softserve.museum.domain.GuideStatisticDTO;
 import com.softserve.museum.domain.Position;
@@ -38,9 +36,6 @@ public class GuideServiceImpl implements GuideService {
     @Autowired
     private GuideDAO guides;
     
-    @Autowired
-    private ExcursionDAO excursions;
-    
     /**
      * Finds all guides.
      * @return list of all guides
@@ -58,14 +53,7 @@ public class GuideServiceImpl implements GuideService {
      */
     @Override
     public List<Guide> findByTime(LocalDateTime start, LocalDateTime end) {
-        List<Excursion> eList = excursions.findInPeriod(start, end);        
-        List<Guide> gList = guides.getAll();
-        
-        for (Excursion e: eList) {
-            gList.remove(e.getGuide());
-        }
-        
-        return gList;
+        return guides.findByTime(start, end);
     }
     
 
@@ -95,6 +83,21 @@ public class GuideServiceImpl implements GuideService {
 	public List<GuideStatisticDTO> getGuidesStatisticByPeriod(LocalDateTime start, LocalDateTime end) {
 		return guides.getGuidesStatisticByPeriod(start, end);
 	}
+    
+    /**
+     * Return statistic about all guides excursions in given time slot.
+     * @param start start of time slot
+     * @param end end of time slot
+     * @return list of proxy object GuideStatisticDTO
+     */
+    @Override
+    public List<GuideStatisticDTO> getGuidesStatisticByPeriod(String start, String end) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startTime = LocalDateTime.parse(start, formatter);
+        LocalDateTime endTime = LocalDateTime.parse(end, formatter);
+        
+        return guides.getGuidesStatisticByPeriod(startTime, endTime);
+    }
 
 	@SuppressWarnings("rawtypes")
 	@Override

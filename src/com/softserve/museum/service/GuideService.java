@@ -68,6 +68,8 @@ public interface GuideService {
     public abstract List<Guide> findByTime(String start, String end);
 
 	public abstract List<GuideStatisticDTO> getGuidesStatisticByPeriod(LocalDateTime start, LocalDateTime end);
+	
+	public abstract List<GuideStatisticDTO> getGuidesStatisticByPeriod(String start, String end);
 
 /*	@SuppressWarnings("rawtypes")
 	public abstract List getCountGuidesByPeriod(LocalDateTime start, LocalDateTime end);

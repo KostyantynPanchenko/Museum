@@ -4,7 +4,8 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<spring:url value="/guides/position" var="position" />
+<spring:url value="/guides" var="all" />
+<spring:url value="/guides/position" var="pos" />
 <spring:url value="/guides/available" var="available" />
 
 <html>
@@ -14,23 +15,21 @@
 
 	<!-- Page content -->
 	<div class="w3-content" style="max-width: 2000px; margin-top: 46px">		
-		<div class="w3-container w3-content w3-center w3-padding-64" style="max-width: 800px" >
-			<h2 class="w3-wide">Guides available</h2>
-			<div class="w3-container w3-content w3-center">
-			<h3 class="w3-wide">from ${start}</h3>
-			<h3 class="w3-wide">to ${end}</h3>
-			</div>		
+		<div class="w3-container w3-content w3-center w3-padding-64"
+			style="max-width: 800px" >
+			<h2 class="w3-wide">Guides' statistics</h2>			
 			
 			<c:choose>
-				<c:when test="${not empty guides}">
+				<c:when test="${not empty statistics}">
 				<table class="w3-table w3-striped w3-border w3-bordered w3-hoverable">
 					<thead>
-					<tr class="w3-light-grey"><th>Guide</th><th>Position</th></tr>
+					<tr class="w3-light-grey"><th>Guide</th><th>Total tours</th><th>Total tours' duration</th></tr>
 					</thead>
-					<c:forEach items="${guides}" var="current">
+					<c:forEach items="${statistics}" var="current">
 						<tr>
 							<td>${current.firstName} ${current.lastName}</td>
-							<td>${current.position.toString()}</td>
+							<td>${current.totalExcursions}</td>
+							<td>${current.excursionsTotalDuration}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -41,11 +40,14 @@
 				</c:otherwise>	
 			</c:choose>
 			<div class="w3-container w3-content w3-center w3-row" style="max-width: 260px">
-			<p><a href="${position}" class="w3-btn-block w3-black">Find guides by position</a></p>
-			<p><a href="${available}" class="w3-btn-block w3-black">Find available guides</a></p>
-		</div>
+				<p><a href="${all}" class="w3-btn-block w3-black">Our guides</a></p>
+				<p><a href="${pos}" class="w3-btn-block w3-black">Find guides by position</a></p>
+				<p><a href="${available}" class="w3-btn-block w3-black">Find available guides</a></p>				
+			</div>		
 		</div>
 	</div>
+		
+	
 	<br />
 		
 	<!-- Footer -->

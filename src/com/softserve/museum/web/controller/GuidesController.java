@@ -74,7 +74,7 @@ public class GuidesController {
             @RequestParam(name="end") String end) {
         
         ModelAndView model = new ModelAndView("guides/guidesAvailableResults");
-     // trim milliseconds and delimiters 
+     // trim seconds, milliseconds and delimiters 
         start = start.replace('T', ' ').substring(0, (start.length() - 7));
         end = end.replace('T', ' ').substring(0, (end.length() - 7));
         model.addObject("start", start);
@@ -115,6 +115,30 @@ public class GuidesController {
         model.addObject("position", position);
         model.addObject("guides", guideService.findByPosition(position));
         return model;
-    }    
+    }
+    
+    @GetMapping("/statistics")
+    public ModelAndView showStatisticsFindForm() {
+        ModelAndView model = new ModelAndView("guides/guidesStatistics");
+        model.addObject("start", LocalDateTime.now());
+        model.addObject("end", LocalDateTime.now().plusHours(2));
+        return model;
+    }
+    
+    @PostMapping("/statistics")
+    public ModelAndView showStatisticsResults(
+            @RequestParam(name="start") String start, 
+            @RequestParam(name="end") String end) {
+        
+        ModelAndView model = new ModelAndView("guides/guidesStatisticsResults");
+     // trim seconds, milliseconds and delimiters 
+        start = start.replace('T', ' ').substring(0, (start.length() - 7));
+        end = end.replace('T', ' ').substring(0, (end.length() - 7));
+        model.addObject("start", start);
+        model.addObject("end", end);
+        model.addObject("statistics", guideService.getGuidesStatisticByPeriod(start, end));
+
+        return model;
+    }
     
 }
