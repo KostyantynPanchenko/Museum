@@ -1,0 +1,210 @@
+DROP DATABASE IF EXISTS museum;
+CREATE DATABASE museum;
+USE museum;
+
+/*	table EXHIBITS		*/
+DROP TABLE IF EXISTS exhibits;
+CREATE TABLE exhibits(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    hall INT UNSIGNED NOT NULL,
+    name VARCHAR(45) NOT NULL,
+    author_id INT NOT NULL REFERENCES guides.id,
+    material_id INT NOT NULL REFERENCES materials.id,
+    technique_id INT NOT NULL REFERENCES techniques.id
+	)
+	AUTO_INCREMENT = 1000
+    ENGINE = innoDB
+    CHARSET = utf8
+;
+
+/*	table AUTHORS		*/
+DROP TABLE IF EXISTS authors;
+CREATE TABLE authors(
+	id INT AUTO_INCREMENT PRIMARY KEY,    
+    name VARCHAR(45) NOT NULL    
+	)
+	AUTO_INCREMENT = 1000
+    ENGINE = innoDB
+    CHARSET = utf8
+;
+
+/*	table MATERIALS		*/
+DROP TABLE IF EXISTS materials;
+CREATE TABLE materials(
+	id INT AUTO_INCREMENT PRIMARY KEY,    
+    description VARCHAR(45) NOT NULL    
+	)
+	AUTO_INCREMENT = 1000
+    ENGINE = innoDB
+    CHARSET = utf8
+;
+
+/*	table TECHNIQUES		*/
+DROP TABLE IF EXISTS techniques;
+CREATE TABLE techniques(
+	id INT AUTO_INCREMENT PRIMARY KEY,    
+    description VARCHAR(45) NOT NULL    
+	)
+	AUTO_INCREMENT = 1000
+    ENGINE = innoDB
+    CHARSET = utf8
+;
+
+/*	table GUIDES			*/
+DROP TABLE IF EXISTS guides;
+CREATE TABLE guides(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL,
+    position VARCHAR(20) NOT NULL
+	)
+	AUTO_INCREMENT = 1000
+    ENGINE = innoDB
+    CHARSET = utf8
+;
+
+/*	table EXCURSIONS		*/
+DROP TABLE IF EXISTS excursions;
+CREATE TABLE excursions(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    start TIMESTAMP NOT NULL,
+    end TIMESTAMP NOT NULL,
+    details_id INT NOT NULL REFERENCES excursion_details.id,
+    guide_id INT NOT NULL REFERENCES guides.id
+	)
+	AUTO_INCREMENT = 1000
+    ENGINE = innoDB
+    CHARSET = utf8
+;
+
+/*	table EXCURSION_DETAILS	*/
+DROP TABLE IF EXISTS excursion_details;
+CREATE TABLE excursion_details(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(45) NOT NULL,
+    duration TIME NOT NULL,
+    durationsec LONG NOT NULL
+	)
+	AUTO_INCREMENT = 1000
+    ENGINE = innoDB
+    CHARSET = utf8
+;
+
+
+/*	population EXHIBITS		*/
+INSERT INTO exhibits VALUES(0, 1, 'Wooden nippel', 1000, 1002, 1002);
+INSERT INTO exhibits VALUES(0, 1, 'Iron hammer', 1002, 1001, 1004);
+INSERT INTO exhibits VALUES(0, 1, 'Copper Tea Cup', 1003, 1002, 1004);
+INSERT INTO exhibits VALUES(0, 1, 'Plate', 1003, 1005, 1003);
+INSERT INTO exhibits VALUES(0, 1, 'Black Square', 1006, 1004, 1003);
+INSERT INTO exhibits VALUES(0, 1, 'La Joconde', 1001, 1004, 1003);
+
+INSERT INTO exhibits VALUES(0, 2, 'Atomic Lady', 1005, 1004, 1001);
+INSERT INTO exhibits VALUES(0, 2, 'Elephants', 1005, 1004, 1004);
+INSERT INTO exhibits VALUES(0, 2, 'The Fly', 1000, 1002, 1004);
+INSERT INTO exhibits VALUES(0, 2, 'Papa Tangi', 1004, 1002, 1004);
+INSERT INTO exhibits VALUES(0, 2, 'Ezhen Bosh', 1004, 1002, 1004);
+INSERT INTO exhibits VALUES(0, 2, 'Garson', 1004, 1002, 1004);
+INSERT INTO exhibits VALUES(0, 2, 'The Glass', 1000, 1000, 1000);
+
+INSERT INTO exhibits VALUES(0, 3, 'Fabulous Eight', 1011, 1006, 1001);
+INSERT INTO exhibits VALUES(0, 3, 'Red Sonya', 1010, 1006, 1001);
+INSERT INTO exhibits VALUES(0, 3, 'Pirates of the Caribian', 1007, 1006, 1001);
+INSERT INTO exhibits VALUES(0, 3, 'Retired', 1008, 1006, 1001);
+INSERT INTO exhibits VALUES(0, 3, 'Rocky Balboa', 1009, 1006, 1001);
+INSERT INTO exhibits VALUES(0, 3, 'The Barbarian', 1010, 1006, 1001);
+INSERT INTO exhibits VALUES(0, 3, 'Pulp Fiction', 1011, 1006, 1001);
+
+/*	populating AUTHORS		*/
+INSERT INTO authors VALUES(1000, 'Maximilian Shvarzemuller');
+INSERT INTO authors VALUES(1001, 'Leonardo Da Vinci');
+INSERT INTO authors VALUES(1002, 'Mazacco');
+INSERT INTO authors VALUES(1003, 'Tician');
+INSERT INTO authors VALUES(1004, 'Van Gogh');
+INSERT INTO authors VALUES(1005, 'Salvador Dali');
+INSERT INTO authors VALUES(1006, 'Milevic');
+INSERT INTO authors VALUES(1007, 'Jack Sparrow');
+INSERT INTO authors VALUES(1008, 'John Week');
+INSERT INTO authors VALUES(1009, 'John Rembo');
+INSERT INTO authors VALUES(1010, 'Conan');
+INSERT INTO authors VALUES(1011, 'Quentin Tarantino');
+
+
+/*	populating MATERIALS	*/
+INSERT INTO materials VALUES(1000, 'glass');
+INSERT INTO materials VALUES(1001, 'iron');
+INSERT INTO materials VALUES(1002, 'wood');
+INSERT INTO materials VALUES(1003, 'copper');
+INSERT INTO materials VALUES(1004, 'canvas');
+INSERT INTO materials VALUES(1005, 'ceramic');
+INSERT INTO materials VALUES(1006, 'tape');
+
+
+/*	populating techniques		*/
+INSERT INTO techniques VALUES(1000, 'plain');
+INSERT INTO techniques VALUES(1001, 'funky');
+INSERT INTO techniques VALUES(1002, 'sobber');
+INSERT INTO techniques VALUES(1003, 'handy');
+INSERT INTO techniques VALUES(1004, 'blacksmith');
+
+
+/*	populatin EXCURSIONS	*/
+INSERT INTO excursions VALUES(0, '2016-10-24 10:00:00', '2016-10-24 11:45:00', 1000, 1000);
+INSERT INTO excursions VALUES(0, '2016-10-24 11:00:00', '2016-10-24 12:30:00', 1001, 1001);
+INSERT INTO excursions VALUES(0, '2016-10-24 12:00:00', '2016-10-24 13:55:00', 1002, 1002);
+INSERT INTO excursions VALUES(0, '2016-10-24 13:00:00', '2016-10-24 14:15:00', 1003, 1003);
+INSERT INTO excursions VALUES(0, '2016-10-24 14:00:00', '2016-10-24 15:30:00', 1004, 1004);
+INSERT INTO excursions VALUES(0, '2016-10-24 15:00:00', '2016-10-24 16:45:00', 1000, 1000);
+INSERT INTO excursions VALUES(0, '2016-10-24 16:00:00', '2016-10-24 17:30:00', 1001, 1001);
+INSERT INTO excursions VALUES(0, '2016-10-24 17:00:00', '2016-10-24 18:55:00', 1002, 1002);
+
+INSERT INTO excursions VALUES(0, '2016-10-25 10:00:00', '2016-10-25 11:45:00', 1000, 1001);
+INSERT INTO excursions VALUES(0, '2016-10-25 11:00:00', '2016-10-25 12:30:00', 1001, 1002);
+INSERT INTO excursions VALUES(0, '2016-10-25 12:00:00', '2016-10-25 13:55:00', 1002, 1003);
+INSERT INTO excursions VALUES(0, '2016-10-25 13:00:00', '2016-10-25 14:15:00', 1003, 1004);
+INSERT INTO excursions VALUES(0, '2016-10-25 14:00:00', '2016-10-25 15:30:00', 1004, 1000);
+INSERT INTO excursions VALUES(0, '2016-10-25 15:00:00', '2016-10-25 16:45:00', 1000, 1001);
+INSERT INTO excursions VALUES(0, '2016-10-25 16:00:00', '2016-10-25 17:30:00', 1001, 1002);
+INSERT INTO excursions VALUES(0, '2016-10-25 17:00:00', '2016-10-25 18:55:00', 1002, 1003);
+
+INSERT INTO excursions VALUES(0, '2016-10-26 10:00:00', '2016-10-26 11:45:00', 1000, 1002);
+INSERT INTO excursions VALUES(0, '2016-10-26 11:00:00', '2016-10-26 12:30:00', 1001, 1003);
+INSERT INTO excursions VALUES(0, '2016-10-26 12:00:00', '2016-10-26 13:55:00', 1002, 1000);
+INSERT INTO excursions VALUES(0, '2016-10-26 13:00:00', '2016-10-26 14:15:00', 1003, 1001);
+INSERT INTO excursions VALUES(0, '2016-10-26 14:00:00', '2016-10-26 15:30:00', 1004, 1002);
+INSERT INTO excursions VALUES(0, '2016-10-26 15:00:00', '2016-10-26 16:45:00', 1000, 1003);
+INSERT INTO excursions VALUES(0, '2016-10-26 16:00:00', '2016-10-26 17:30:00', 1001, 1004);
+INSERT INTO excursions VALUES(0, '2016-10-26 17:00:00', '2016-10-26 18:55:00', 1002, 1000);
+
+INSERT INTO excursions VALUES(0, '2016-10-27 10:00:00', '2016-10-27 11:45:00', 1000, 1003);
+INSERT INTO excursions VALUES(0, '2016-10-27 11:00:00', '2016-10-27 12:30:00', 1001, 1004);
+INSERT INTO excursions VALUES(0, '2016-10-27 12:00:00', '2016-10-27 13:55:00', 1002, 1000);
+INSERT INTO excursions VALUES(0, '2016-10-27 13:00:00', '2016-10-27 14:15:00', 1003, 1001);
+INSERT INTO excursions VALUES(0, '2016-10-27 14:00:00', '2016-10-27 15:30:00', 1004, 1002);
+INSERT INTO excursions VALUES(0, '2016-10-27 15:00:00', '2016-10-27 16:45:00', 1000, 1003);
+INSERT INTO excursions VALUES(0, '2016-10-27 16:00:00', '2016-10-27 17:30:00', 1001, 1004);
+INSERT INTO excursions VALUES(0, '2016-10-27 17:00:00', '2016-10-27 18:55:00', 1002, 1000);
+
+INSERT INTO excursions VALUES(0, '2016-10-28 10:00:00', '2016-10-28 11:45:00', 1000, 1004);
+INSERT INTO excursions VALUES(0, '2016-10-28 11:00:00', '2016-10-28 12:30:00', 1001, 1000);
+INSERT INTO excursions VALUES(0, '2016-10-28 12:00:00', '2016-10-28 13:55:00', 1002, 1001);
+INSERT INTO excursions VALUES(0, '2016-10-28 13:00:00', '2016-10-28 14:15:00', 1003, 1002);
+INSERT INTO excursions VALUES(0, '2016-10-28 14:00:00', '2016-10-28 15:30:00', 1004, 1003);
+INSERT INTO excursions VALUES(0, '2016-10-28 15:00:00', '2016-10-28 16:45:00', 1000, 1004);
+INSERT INTO excursions VALUES(0, '2016-10-28 16:00:00', '2016-10-28 17:30:00', 1001, 1000);
+INSERT INTO excursions VALUES(0, '2016-10-28 17:00:00', '2016-10-28 18:55:00', 1002, 1001);
+
+/*	populating EXCURSION_DETAILS*/
+INSERT INTO excursion_details VALUES(1000, 'Movie Tour', '01:45:00', 6300);
+INSERT INTO excursion_details VALUES(1001, 'Crusaider Tour', '01:30:00', 5400);
+INSERT INTO excursion_details VALUES(1002, 'Paintings Tour', '01:55:00', 6900);
+INSERT INTO excursion_details VALUES(1003, 'Funky Tour', '01:15:00', 4500);
+INSERT INTO excursion_details VALUES(1004, 'Contemporary Tour', '01:30:00', 5400);
+
+
+/*	populating GUIDES		*/
+INSERT INTO guides VALUES(1000, 'Jim', 'Beam', 'CHIEF_GUIDE');
+INSERT INTO guides VALUES(1001, 'Jack', 'Daniel', 'GUIDE');
+INSERT INTO guides VALUES(1002, 'Johny', 'Walker', 'GUIDE');
+INSERT INTO guides VALUES(1003, 'Jose', 'Cuervo', 'GUIDE');
+INSERT INTO guides VALUES(1004, 'Sauvignon', 'Blanc', 'MANAGER');
